@@ -1,0 +1,8 @@
+time=2026-02-26T17:39:06.784+07:00 level=INFO msg="app: loading configuration"
+time=2026-02-26T17:39:06.787+07:00 level=INFO msg="app: configuration loaded" devices=1 object_defs=1
+time=2026-02-26T17:39:06.788+07:00 level=INFO msg="app: scheduler started" entries=1
+time=2026-02-26T17:39:06.788+07:00 level=INFO msg="app: pipeline running" poller_workers=2 buffer_size=10000 trap_enabled=false
+time=2026-02-26T17:39:06.788+07:00 level=INFO msg="snmpcollector: running — press Ctrl-C to stop"
+time=2026-02-26T17:39:19.858+07:00 level=INFO msg="snmpcollector: received shutdown signal"
+time=2026-02-26T17:39:19.858+07:00 level=INFO msg="app: shutting down"
+time=2026-02-26T17:39:19.858+07:00 level=INFO msg="app: shutdown complete"

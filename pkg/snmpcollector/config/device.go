@@ -1,0 +1,98 @@
+package config
+
+// DeviceConfig is the fully-resolved configuration for a single monitored device.
+// All optional fields have been filled from DeviceDefaults before this is stored
+// in LoadedConfig.Devices.
+type DeviceConfig struct {
+	// IP is the management IP address of the device.
+	IP string
+
+	// Port is the UDP port for SNMP requests (default 161).
+	Port int
+
+	// PollInterval is the polling interval in seconds (default 60).
+	PollInterval int
+
+	// Timeout is the per-request timeout in milliseconds (default 3000).
+	Timeout int
+
+	// Retries is the number of retry attempts on timeout (default 2).
+	Retries int
+
+	// ExponentialTimeout enables exponential backoff between retries.
+	ExponentialTimeout bool
+
+	// Version is the SNMP version: "1", "2c", or "3".
+	Version string
+
+	// Communities is the list of community strings to try (v1/v2c only).
+	Communities []string
+
+	// V3Credentials is the list of SNMPv3 credential sets to try (v3 only).
+	V3Credentials []V3Credentials
+
+	// DeviceGroups lists the device group names applied to this device.
+	DeviceGroups []string
+
+	// MaxConcurrentPolls limits how many concurrent SNMP requests may be
+	// in-flight to this device at any time (default 4).
+	MaxConcurrentPolls int
+}
+
+// DeviceDefaults holds the global default values for optional device fields.
+// Zero-value fields mean "not specified"; resolveDevice applies hard-coded
+// fallbacks for those.
+type DeviceDefaults struct {
+	Port               int
+	PollInterval       int
+	Timeout            int
+	Retries            int
+	Version            string
+	Communities        []string
+	DeviceGroups       []string
+	MaxConcurrentPolls int
+}
+
+// V3Credentials holds a single set of SNMPv3 security parameters.
+type V3Credentials struct {
+	// Username is the SNMPv3 security name.
+	Username string `yaml:"username"`
+
+	// AuthenticationProtocol is one of: noauth, md5, sha, sha224, sha256, sha384, sha512.
+	AuthenticationProtocol string `yaml:"authentication_protocol"`
+
+	// AuthenticationPassphrase is the passphrase for the chosen auth protocol.
+	AuthenticationPassphrase string `yaml:"authentication_passphrase"`
+
+	// PrivacyProtocol is one of: nopriv, des, aes, aes192, aes256, aes192c, aes256c.
+	PrivacyProtocol string `yaml:"privacy_protocol"`
+
+	// PrivacyPassphrase is the passphrase for the chosen privacy protocol.
+	PrivacyPassphrase string `yaml:"privacy_passphrase"`
+}
+
+// DeviceGroup lists the object group names applied to devices in this group.
+type DeviceGroup struct {
+	ObjectGroups []string
+}
+
+// ObjectGroup lists the object definition keys that belong to this group.
+type ObjectGroup struct {
+	Objects []string
+}
+
+// rawDeviceEntry is the intermediate YAML-decoded form of a single device.
+// It maps 1-to-1 with the device YAML schema before defaults are applied.
+type rawDeviceEntry struct {
+	IP                 string          `yaml:"ip"`
+	Port               int             `yaml:"port"`
+	PollInterval       int             `yaml:"poll_interval"`
+	Timeout            int             `yaml:"timeout"`
+	Retries            int             `yaml:"retries"`
+	ExponentialTimeout bool            `yaml:"exponential_timeout"`
+	Version            string          `yaml:"version"`
+	Communities        []string        `yaml:"communities"`
+	V3Credentials      []V3Credentials `yaml:"v3_credentials"`
+	DeviceGroups       []string        `yaml:"device_groups"`
+	MaxConcurrentPolls int             `yaml:"max_concurrent_polls"`
+}

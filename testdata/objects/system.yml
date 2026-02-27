@@ -1,0 +1,16 @@
+SNMPv2-MIB::system:
+  mib: SNMPv2-MIB
+  object: system
+  attributes:
+    sysDescr:
+      oid: ".1.3.6.1.2.1.1.1"
+      name: "sys.descr"
+      syntax: "DisplayString"
+    sysUpTime:
+      oid: ".1.3.6.1.2.1.1.3"
+      name: "sys.uptime"
+      syntax: "TimeTicks"
+    sysName:
+      oid: ".1.3.6.1.2.1.1.5"
+      name: "sys.name"
+      syntax: "DisplayString"

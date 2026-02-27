@@ -1,0 +1,3 @@
+# Poll localhost — we'll run a test SNMP agent or just see graceful errors
+localhost:
+  ip: 127.0.0.1
