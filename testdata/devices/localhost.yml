@@ -1,3 +1,12 @@
-# Poll localhost — we'll run a test SNMP agent or just see graceful errors
-localhost:
+myswitch.lab:
   ip: 127.0.0.1
+  port: 161
+  poll_interval: 30
+  timeout: 3000
+  retries: 2
+  version: 2c
+  communities:
+    - public
+  device_groups:
+    - generic
+  max_concurrent_polls: 2

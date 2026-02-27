@@ -23,16 +23,17 @@ func writeTestConfig(t *testing.T) config.Paths {
 	t.Helper()
 	base := t.TempDir()
 
-	dirs := []string{"devices", "defaults", "device_groups", "object_groups", "objects", "enums"}
+	dirs := []string{"devices", "device_groups", "object_groups", "objects", "enums"}
 	for _, d := range dirs {
 		if err := os.MkdirAll(filepath.Join(base, d), 0o755); err != nil {
 			t.Fatal(err)
 		}
 	}
 
-	// Default: SNMPv2c, fast poll for test speed.
-	writeYAML(t, filepath.Join(base, "defaults", "device.yml"), `
-default:
+	// One device with all fields specified (no defaults file).
+	writeYAML(t, filepath.Join(base, "devices", "dev1.yml"), `
+testdevice:
+  ip: 127.0.0.250
   port: 161
   poll_interval: 1
   timeout: 500
@@ -41,12 +42,6 @@ default:
   communities: ["public"]
   device_groups: ["testgroup"]
   max_concurrent_polls: 2
-`)
-
-	// One device that will fail to connect (no real agent).
-	writeYAML(t, filepath.Join(base, "devices", "dev1.yml"), `
-testdevice:
-  ip: 127.0.0.250
 `)
 
 	writeYAML(t, filepath.Join(base, "device_groups", "testgroup.yml"), `
@@ -79,7 +74,6 @@ SNMPv2-MIB::system:
 
 	return config.Paths{
 		Devices:      filepath.Join(base, "devices"),
-		Defaults:     filepath.Join(base, "defaults"),
 		DeviceGroups: filepath.Join(base, "device_groups"),
 		ObjectGroups: filepath.Join(base, "object_groups"),
 		Objects:      filepath.Join(base, "objects"),

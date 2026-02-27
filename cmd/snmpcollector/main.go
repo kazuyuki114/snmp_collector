@@ -54,7 +54,6 @@ func run() error {
 
 		// Config path overrides (defaults read from env).
 		cfgDevices      string
-		cfgDefaults     string
 		cfgDeviceGroups string
 		cfgObjectGroups string
 		cfgObjects      string
@@ -75,7 +74,6 @@ func run() error {
 	flag.IntVar(&poolIdleSec, "snmp.pool.idle.timeout", 30, "Idle connection timeout in seconds")
 
 	flag.StringVar(&cfgDevices, "config.devices", "", "Override INPUT_SNMP_DEVICE_DEFINITIONS_DIRECTORY_PATH")
-	flag.StringVar(&cfgDefaults, "config.defaults", "", "Override INPUT_SNMP_DEFAULTS_DIRECTORY_PATH")
 	flag.StringVar(&cfgDeviceGroups, "config.device.groups", "", "Override INPUT_SNMP_DEVICE_GROUP_DEFINITIONS_DIRECTORY_PATH")
 	flag.StringVar(&cfgObjectGroups, "config.object.groups", "", "Override INPUT_SNMP_OBJECT_GROUP_DEFINITIONS_DIRECTORY_PATH")
 	flag.StringVar(&cfgObjects, "config.objects", "", "Override INPUT_SNMP_OBJECT_DEFINITIONS_DIRECTORY_PATH")
@@ -91,7 +89,7 @@ func run() error {
 
 	// ── Config paths ─────────────────────────────────────────────────────
 	paths := config.PathsFromEnv()
-	applyPathOverrides(&paths, cfgDevices, cfgDefaults, cfgDeviceGroups, cfgObjectGroups, cfgObjects, cfgEnums)
+	applyPathOverrides(&paths, cfgDevices, cfgDeviceGroups, cfgObjectGroups, cfgObjects, cfgEnums)
 
 	// ── Build App ────────────────────────────────────────────────────────
 	cfg := app.Config{
@@ -164,12 +162,9 @@ func buildLogger(level, format string) (*slog.Logger, error) {
 	return slog.New(handler), nil
 }
 
-func applyPathOverrides(p *config.Paths, devices, defaults, dgroups, ogroups, objects, enums string) {
+func applyPathOverrides(p *config.Paths, devices, dgroups, ogroups, objects, enums string) {
 	if devices != "" {
 		p.Devices = devices
-	}
-	if defaults != "" {
-		p.Defaults = defaults
 	}
 	if dgroups != "" {
 		p.DeviceGroups = dgroups

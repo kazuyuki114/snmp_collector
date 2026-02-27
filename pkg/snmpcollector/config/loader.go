@@ -1,10 +1,9 @@
 // Package config provides YAML configuration loading for the SNMP Collector.
 //
-// It reads six directory trees (driven by environment variables) and produces
+// It reads five directory trees (driven by environment variables) and produces
 // a LoadedConfig value that is used by the rest of the application.
 //
 //	INPUT_SNMP_DEVICE_DEFINITIONS_DIRECTORY_PATH     → Devices map
-//	INPUT_SNMP_DEFAULTS_DIRECTORY_PATH               → DeviceDefaults
 //	INPUT_SNMP_DEVICE_GROUP_DEFINITIONS_DIRECTORY_PATH → DeviceGroups map
 //	INPUT_SNMP_OBJECT_GROUP_DEFINITIONS_DIRECTORY_PATH → ObjectGroups map
 //	INPUT_SNMP_OBJECT_DEFINITIONS_DIRECTORY_PATH     → ObjectDefs map
@@ -33,7 +32,6 @@ import (
 // Paths holds the directory locations for every configuration tree.
 type Paths struct {
 	Devices      string // INPUT_SNMP_DEVICE_DEFINITIONS_DIRECTORY_PATH
-	Defaults     string // INPUT_SNMP_DEFAULTS_DIRECTORY_PATH
 	DeviceGroups string // INPUT_SNMP_DEVICE_GROUP_DEFINITIONS_DIRECTORY_PATH
 	ObjectGroups string // INPUT_SNMP_OBJECT_GROUP_DEFINITIONS_DIRECTORY_PATH
 	Objects      string // INPUT_SNMP_OBJECT_DEFINITIONS_DIRECTORY_PATH
@@ -45,7 +43,6 @@ type Paths struct {
 func PathsFromEnv() Paths {
 	return Paths{
 		Devices:      envOr("INPUT_SNMP_DEVICE_DEFINITIONS_DIRECTORY_PATH", "/etc/snmp_collector/snmp/devices"),
-		Defaults:     envOr("INPUT_SNMP_DEFAULTS_DIRECTORY_PATH", "/etc/snmp_collector/snmp/defaults"),
 		DeviceGroups: envOr("INPUT_SNMP_DEVICE_GROUP_DEFINITIONS_DIRECTORY_PATH", "/etc/snmp_collector/snmp/device_groups"),
 		ObjectGroups: envOr("INPUT_SNMP_OBJECT_GROUP_DEFINITIONS_DIRECTORY_PATH", "/etc/snmp_collector/snmp/object_groups"),
 		Objects:      envOr("INPUT_SNMP_OBJECT_DEFINITIONS_DIRECTORY_PATH", "/etc/snmp_collector/snmp/objects"),
@@ -66,11 +63,8 @@ func envOr(key, def string) string {
 
 // LoadedConfig is the fully parsed representation of all configuration trees.
 type LoadedConfig struct {
-	// Devices maps hostname → resolved DeviceConfig (defaults merged in).
+	// Devices maps hostname → resolved DeviceConfig (hard-coded fallbacks applied).
 	Devices map[string]DeviceConfig
-
-	// DeviceDefault is the merged global device default.
-	DeviceDefault DeviceDefaults
 
 	// DeviceGroups maps group name → DeviceGroup.
 	DeviceGroups map[string]DeviceGroup
@@ -103,37 +97,31 @@ func Load(paths Paths, logger *slog.Logger) (*LoadedConfig, error) {
 
 	var errs []string
 
-	// 1. Device defaults —————————————————————————————————————————————————────
-	defaults, err := loadDeviceDefaults(paths.Defaults, logger)
+	// 1. Devices ——————————————————————————————————————————————————————————————
+	devices, err := loadDevices(paths.Devices, logger)
 	if err != nil {
 		errs = append(errs, err.Error())
 	}
 
-	// 2. Devices ——————————————————————————————————————————————————————————————
-	devices, err := loadDevices(paths.Devices, defaults, logger)
-	if err != nil {
-		errs = append(errs, err.Error())
-	}
-
-	// 3. Device groups ————————————————————————————————————————————————————————
+	// 2. Device groups ————————————————————————————————————————————————————————
 	dgroups, err := loadDeviceGroups(paths.DeviceGroups, logger)
 	if err != nil {
 		errs = append(errs, err.Error())
 	}
 
-	// 4. Object groups ————————————————————————————————————————————————————————
+	// 3. Object groups ————————————————————————————————————————————————————————
 	ogroups, err := loadObjectGroups(paths.ObjectGroups, logger)
 	if err != nil {
 		errs = append(errs, err.Error())
 	}
 
-	// 5. Object definitions ——————————————————————————————————————————————————
+	// 4. Object definitions ——————————————————————————————————————————————————
 	objDefs, err := loadObjectDefs(paths.Objects, logger)
 	if err != nil {
 		errs = append(errs, err.Error())
 	}
 
-	// 6. Enum definitions ————————————————————————————————————————————————————
+	// 5. Enum definitions ————————————————————————————————————————————————————
 	enumReg, err := loadEnums(paths.Enums, objDefs, logger)
 	if err != nil {
 		errs = append(errs, err.Error())
@@ -144,80 +132,19 @@ func Load(paths Paths, logger *slog.Logger) (*LoadedConfig, error) {
 	}
 
 	return &LoadedConfig{
-		Devices:       devices,
-		DeviceDefault: defaults,
-		DeviceGroups:  dgroups,
-		ObjectGroups:  ogroups,
-		ObjectDefs:    objDefs,
-		Enums:         enumReg,
+		Devices:      devices,
+		DeviceGroups: dgroups,
+		ObjectGroups: ogroups,
+		ObjectDefs:   objDefs,
+		Enums:        enumReg,
 	}, nil
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Device defaults
-// ─────────────────────────────────────────────────────────────────────────────
-
-type rawDefaults struct {
-	Default rawDeviceEntry `yaml:"default"`
-}
-
-func loadDeviceDefaults(dir string, logger *slog.Logger) (DeviceDefaults, error) {
-	var zero DeviceDefaults
-	files, err := yamlFiles(dir)
-	if err != nil {
-		if os.IsNotExist(err) {
-			return zero, nil
-		}
-		return zero, fmt.Errorf("list defaults dir %q: %w", dir, err)
-	}
-
-	var merged DeviceDefaults
-	for _, path := range files {
-		var raw rawDefaults
-		if err := decodeFile(path, &raw); err != nil {
-			logger.Warn("config: skip malformed defaults file", "file", path, "error", err.Error())
-			continue
-		}
-		merged = mergeDefaults(merged, raw.Default)
-		logger.Debug("config: loaded device defaults", "file", path)
-	}
-	return merged, nil
-}
-
-// mergeDefaults fills zero fields in dst with values from src.
-func mergeDefaults(dst DeviceDefaults, src rawDeviceEntry) DeviceDefaults {
-	if dst.Port == 0 && src.Port != 0 {
-		dst.Port = src.Port
-	}
-	if dst.PollInterval == 0 && src.PollInterval != 0 {
-		dst.PollInterval = src.PollInterval
-	}
-	if dst.Timeout == 0 && src.Timeout != 0 {
-		dst.Timeout = src.Timeout
-	}
-	if dst.Retries == 0 && src.Retries != 0 {
-		dst.Retries = src.Retries
-	}
-	if dst.Version == "" && src.Version != "" {
-		dst.Version = src.Version
-	}
-	if len(dst.Communities) == 0 && len(src.Communities) > 0 {
-		dst.Communities = src.Communities
-	}
-	if len(dst.DeviceGroups) == 0 && len(src.DeviceGroups) > 0 {
-		dst.DeviceGroups = src.DeviceGroups
-	}
-	if dst.MaxConcurrentPolls == 0 && src.MaxConcurrentPolls != 0 {
-		dst.MaxConcurrentPolls = src.MaxConcurrentPolls
-	}
-	return dst
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Devices
 // ─────────────────────────────────────────────────────────────────────────────
 
-func loadDevices(dir string, defaults DeviceDefaults, logger *slog.Logger) (map[string]DeviceConfig, error) {
+func loadDevices(dir string, logger *slog.Logger) (map[string]DeviceConfig, error) {
 	result := make(map[string]DeviceConfig)
 	files, err := yamlFiles(dir)
 	if err != nil {
@@ -234,70 +161,42 @@ func loadDevices(dir string, defaults DeviceDefaults, logger *slog.Logger) (map[
 			continue
 		}
 		for hostname, entry := range raw {
-			result[hostname] = resolveDevice(entry, defaults)
+			result[hostname] = resolveDevice(entry)
 		}
 		logger.Debug("config: loaded device file", "file", path, "count", len(raw))
 	}
 	return result, nil
 }
 
-// resolveDevice merges a raw device entry with defaults, producing a
-// fully-resolved DeviceConfig.
-func resolveDevice(e rawDeviceEntry, d DeviceDefaults) DeviceConfig {
+// resolveDevice applies hard-coded fallbacks for zero-valued fields,
+// producing a fully-resolved DeviceConfig.
+func resolveDevice(e rawDeviceEntry) DeviceConfig {
 	port := e.Port
-	if port == 0 {
-		port = d.Port
-	}
 	if port == 0 {
 		port = 161
 	}
 
 	interval := e.PollInterval
 	if interval == 0 {
-		interval = d.PollInterval
-	}
-	if interval == 0 {
 		interval = 60
 	}
 
 	timeout := e.Timeout
-	if timeout == 0 {
-		timeout = d.Timeout
-	}
 	if timeout == 0 {
 		timeout = 3000
 	}
 
 	retries := e.Retries
 	if retries == 0 {
-		retries = d.Retries
-	}
-	if retries == 0 {
 		retries = 2
 	}
 
 	version := e.Version
 	if version == "" {
-		version = d.Version
-	}
-	if version == "" {
 		version = "2c"
 	}
 
-	communities := e.Communities
-	if len(communities) == 0 {
-		communities = d.Communities
-	}
-
-	dgroups := e.DeviceGroups
-	if len(dgroups) == 0 {
-		dgroups = d.DeviceGroups
-	}
-
 	maxPolls := e.MaxConcurrentPolls
-	if maxPolls == 0 {
-		maxPolls = d.MaxConcurrentPolls
-	}
 	if maxPolls == 0 {
 		maxPolls = 4
 	}
@@ -310,9 +209,9 @@ func resolveDevice(e rawDeviceEntry, d DeviceDefaults) DeviceConfig {
 		Retries:            retries,
 		ExponentialTimeout: e.ExponentialTimeout,
 		Version:            version,
-		Communities:        communities,
+		Communities:        e.Communities,
 		V3Credentials:      e.V3Credentials,
-		DeviceGroups:       dgroups,
+		DeviceGroups:       e.DeviceGroups,
 		MaxConcurrentPolls: maxPolls,
 	}
 }

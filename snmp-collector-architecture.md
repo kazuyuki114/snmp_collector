@@ -122,10 +122,10 @@ cmd/trapd/
 - Coordinates goroutines and channels
 
 **`pkg/snmpcollector/config/`** - Configuration management
-- Device inventory parsing
+- Device inventory parsing (each device is self-contained)
 - Metric definitions
 - Credential management (passwords, community strings)
-- Validation and defaults
+- Validation and hard-coded fallbacks for optional fields
 
 **`pkg/snmpcollector/scheduler/`** - Polling scheduler
 - Job queue management
@@ -796,9 +796,8 @@ utils/credentials/
 
 The configuration is organized hierarchically: **Devices** → **Device Groups** → **Object Groups** → **Objects** → **Attributes**
 
-Configuration file locations are specified by environment variables with defaults:
+Configuration file locations are specified by environment variables:
 - `INPUT_SNMP_DEVICE_DEFINITIONS_DIRECTORY_PATH` (default: `/etc/snmp_collector/snmp/devices`)
-- `INPUT_SNMP_DEFAULTS_DIRECTORY_PATH` (default: `/etc/snmp_collector/snmp/defaults`)
 - `INPUT_SNMP_DEVICE_GROUP_DEFINITIONS_DIRECTORY_PATH` (default: `/etc/snmp_collector/snmp/device_groups`)
 - `INPUT_SNMP_OBJECT_GROUP_DEFINITIONS_DIRECTORY_PATH` (default: `/etc/snmp_collector/snmp/object_groups`)
 - `INPUT_SNMP_OBJECT_DEFINITIONS_DIRECTORY_PATH` (default: `/etc/snmp_collector/snmp/objects`)
@@ -806,7 +805,18 @@ Configuration file locations are specified by environment variables with default
 
 #### Device Configuration
 
-**SNMP v2c Example** - Full configuration:
+Each device entry is **self-contained** — all configuration lives directly in the device YAML file. Optional fields that are omitted fall back to hard-coded defaults:
+
+| Field | Hard-coded fallback |
+|---|---|
+| `port` | 161 |
+| `poll_interval` | 60 |
+| `timeout` | 3000 |
+| `retries` | 2 |
+| `version` | `2c` |
+| `max_concurrent_polls` | 4 |
+
+**SNMP v2c Example:**
 
 `/etc/snmp_collector/snmp/devices/router01.yml`:
 ```yaml
@@ -825,18 +835,7 @@ router01.example.com:
   max_concurrent_polls: 4
 ```
 
-**SNMP v2c Example** - When using defaults:
-```yaml
-router01.example.com:
-  ip: 192.0.2.1
-  version: 2c
-  communities:
-    - public
-  device_groups:
-    - cisco_c1000
-```
-
-**SNMP v3 Example** - Full configuration:
+**SNMP v3 Example:**
 
 `/etc/snmp_collector/snmp/devices/switch01.yml`:
 ```yaml
@@ -859,37 +858,15 @@ switch01.example.com:
   max_concurrent_polls: 4
 ```
 
-**SNMP v3 Example** - When using defaults:
+**Minimal Example** (omitted fields use hard-coded fallbacks):
 ```yaml
-switch01.example.com:
-  ip: 192.0.2.2
-  version: 3
-  v3_credentials:
-    - username: snmp_collector
-      authentication_protocol: sha
-      authentication_passphrase: efauthpassword
-      privacy_protocol: des
-      privacy_passphrase: efprivpassword
-  device_groups:
-    - cisco_c1000
-```
-
-#### Global Device Defaults
-
-`/etc/snmp_collector/snmp/defaults/device.yml`:
-```yaml
-default:
-  port: 161
-  timeout: 3000
-  retries: 2
-  exponential_timeout: false
+router02.example.com:
+  ip: 10.0.0.1
   version: 2c
   communities:
-    - public
+    - private
   device_groups:
     - generic
-  poll_interval: 60
-  max_concurrent_polls: 4
 ```
 
 #### Device Groups
@@ -1167,15 +1144,15 @@ trap_config:
 
 ### Device Attributes
 
-| Attribute | Required | Default | Description |
-|-----------|----------|---------|-------------|
+| Attribute | Required | Fallback | Description |
+|-----------|----------|----------|-------------|
 | `ip` | Yes | - | IP address of the device |
 | `port` | No | 161 | UDP port for SNMP requests |
 | `poll_interval` | No | 60 | Polling interval in seconds |
 | `timeout` | No | 3000 | Request timeout in milliseconds |
 | `retries` | No | 2 | Number of retry attempts |
 | `exponential_timeout` | No | false | Use exponential backoff for retries |
-| `version` | Yes | - | SNMP version: `1`, `2c`, or `3` |
+| `version` | No | `2c` | SNMP version: `1`, `2c`, or `3` |
 | `communities` | For v1/v2c | - | List of community strings to try |
 | `v3_credentials` | For v3 | - | List of SNMPv3 credentials |
 | `device_groups` | Yes | - | List of device groups to apply |
@@ -1236,7 +1213,6 @@ The `syntax` field specifies how raw SNMP values are interpreted. Supports exten
 ```bash
 # Input Configuration
 -INPUT_SNMP_DEVICE_DEFINITIONS_DIRECTORY_PATH=/etc/snmp_collector/snmp/devices
--INPUT_SNMP_DEFAULTS_DIRECTORY_PATH=/etc/snmp_collector/snmp/defaults
 -INPUT_SNMP_DEVICE_GROUP_DEFINITIONS_DIRECTORY_PATH=/etc/snmp_collector/snmp/device_groups
 -INPUT_SNMP_OBJECT_GROUP_DEFINITIONS_DIRECTORY_PATH=/etc/snmp_collector/snmp/object_groups
 -INPUT_SNMP_OBJECT_DEFINITIONS_DIRECTORY_PATH=/etc/snmp_collector/snmp/objects

@@ -1,8 +1,8 @@
 package config
 
 // DeviceConfig is the fully-resolved configuration for a single monitored device.
-// All optional fields have been filled from DeviceDefaults before this is stored
-// in LoadedConfig.Devices.
+// Optional fields that are zero-valued in the YAML are filled with hard-coded
+// fallbacks during resolution.
 type DeviceConfig struct {
 	// IP is the management IP address of the device.
 	IP string
@@ -39,20 +39,6 @@ type DeviceConfig struct {
 	MaxConcurrentPolls int
 }
 
-// DeviceDefaults holds the global default values for optional device fields.
-// Zero-value fields mean "not specified"; resolveDevice applies hard-coded
-// fallbacks for those.
-type DeviceDefaults struct {
-	Port               int
-	PollInterval       int
-	Timeout            int
-	Retries            int
-	Version            string
-	Communities        []string
-	DeviceGroups       []string
-	MaxConcurrentPolls int
-}
-
 // V3Credentials holds a single set of SNMPv3 security parameters.
 type V3Credentials struct {
 	// Username is the SNMPv3 security name.
@@ -82,7 +68,8 @@ type ObjectGroup struct {
 }
 
 // rawDeviceEntry is the intermediate YAML-decoded form of a single device.
-// It maps 1-to-1 with the device YAML schema before defaults are applied.
+// It maps 1-to-1 with the device YAML schema. Hard-coded fallbacks are applied
+// for zero-valued fields during resolution.
 type rawDeviceEntry struct {
 	IP                 string          `yaml:"ip"`
 	Port               int             `yaml:"port"`
