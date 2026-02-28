@@ -1,0 +1,155 @@
+HOST-RESOURCES-MIB::hrSystem:
+  mib: HOST-RESOURCES-MIB
+  object: hrSystem
+  discovery_attribute: hrSystemUptime
+  attributes:
+    hrSystemUptime:
+      oid: .1.3.6.1.2.1.25.1.1
+      name: system.uptime
+      syntax: TimeTicks
+      metric: counter
+    # hrSystemDate:
+    #   oid: .1.3.6.1.2.1.25.1.2
+    #   name: hrSystemDate
+    #   syntax: DateAndTime
+    # hrSystemInitialLoadDevice:
+    #   oid: .1.3.6.1.2.1.25.1.3
+    #   name: hrSystemInitialLoadDevice
+    #   syntax: Integer32
+    # hrSystemInitialLoadParameters:
+    #   oid: .1.3.6.1.2.1.25.1.4
+    #   name: hrSystemInitialLoadParameters
+    #   syntax: DisplayString
+    hrSystemNumUsers:
+      oid: .1.3.6.1.2.1.25.1.5
+      name: system.users
+      syntax: Gauge32
+      metric: gauge
+    hrSystemProcesses:
+      oid: .1.3.6.1.2.1.25.1.6
+      name: system.procs
+      syntax: Gauge32
+      metric: gauge
+    hrSystemMaxProcesses:
+      oid: .1.3.6.1.2.1.25.1.7
+      name: system.procs_max
+      syntax: Integer32
+      metric: gauge
+    hrMemorySize:
+      oid: .1.3.6.1.2.1.25.2.2
+      name: mem.total.bytes
+      syntax: BytesKB
+      metric: gauge
+
+HOST-RESOURCES-MIB::hrStorageEntry:
+  mib: HOST-RESOURCES-MIB
+  object: hrStorageEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.2.1.25.2.3.1.1
+      name: disk.index # hrStorageIndex
+      syntax: IntegerAsID
+  discovery_attribute: hrStorageType
+  attributes:
+    hrStorageType:
+      oid: .1.3.6.1.2.1.25.2.3.1.2
+      tag: true
+      name: disk.type
+      syntax: EnumObjectIdentifier
+    hrStorageDescr:
+      oid: .1.3.6.1.2.1.25.2.3.1.3
+      tag: true
+      name: disk.name
+      syntax: DisplayString
+    hrStorageAllocationUnits:
+      oid: .1.3.6.1.2.1.25.2.3.1.4
+      name: disk.alloc_unit.size
+      syntax: Integer32
+      metric: gauge
+    hrStorageSize:
+      oid: .1.3.6.1.2.1.25.2.3.1.5
+      name: disk.alloc_unit.total
+      syntax: Integer32
+      metric: gauge
+    hrStorageUsed:
+      oid: .1.3.6.1.2.1.25.2.3.1.6
+      name: disk.alloc_unit.used
+      syntax: Integer32
+      metric: gauge
+    hrStorageAllocationFailures:
+      oid: .1.3.6.1.2.1.25.2.3.1.7
+      name: disk.alloc.fails
+      syntax: Counter32
+      metric: counter
+
+HOST-RESOURCES-MIB::hrDeviceEntry:
+  mib: HOST-RESOURCES-MIB
+  object: hrDeviceEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.2.1.25.3.2.1.1
+      name: device.index # hrDeviceIndex
+      syntax: IntegerAsID
+  discovery_attribute: hrDeviceType
+  attributes:
+    hrDeviceType:
+      oid: .1.3.6.1.2.1.25.3.2.1.2
+      tag: true
+      name: device.type
+      syntax: EnumObjectIdentifier
+    hrDeviceDescr:
+      oid: .1.3.6.1.2.1.25.3.2.1.3
+      tag: true
+      name: device.name
+      syntax: DisplayString
+    hrDeviceID:
+      oid: .1.3.6.1.2.1.25.3.2.1.4
+      tag: true
+      name: device.product
+      syntax: EnumObjectIdentifier
+    hrDeviceStatus:
+      oid: .1.3.6.1.2.1.25.3.2.1.5
+      name: device.state
+      syntax: EnumInteger
+    hrDeviceErrors:
+      oid: .1.3.6.1.2.1.25.3.2.1.6
+      name: device.errors
+      syntax: Counter32
+      metric: counter
+
+HOST-RESOURCES-MIB::hrProcessorEntry:
+  mib: HOST-RESOURCES-MIB
+  object: hrProcessorEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.2.1.25.3.2.1.1
+      name: device.index # hrDeviceIndex
+      syntax: IntegerAsID
+  # augments: HOST-RESOURCES-MIB::hrDeviceEntry
+  discovery_attribute: hrProcessorLoad
+  attributes:
+    hrProcessorLoad:
+      oid: .1.3.6.1.2.1.25.3.3.1.2
+      name: cpu.util.pct
+      syntax: Percent100
+      metric: gauge
+
+HOST-RESOURCES-MIB::hrPrinterEntry:
+  mib: HOST-RESOURCES-MIB
+  object: hrPrinterEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.2.1.25.3.2.1.1
+      name: device.index # hrDeviceIndex
+      syntax: IntegerAsID
+  # augments: HOST-RESOURCES-MIB::hrDeviceEntry
+  discovery_attribute: hrPrinterStatus
+  attributes:
+    hrPrinterStatus:
+      oid: .1.3.6.1.2.1.25.3.5.1.1
+      name: printer.state
+      syntax: EnumInteger
+    hrPrinterDetectedErrorState:
+      oid: .1.3.6.1.2.1.25.3.5.1.2
+      name: printer.error.state.value
+      syntax: OctetString

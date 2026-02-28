@@ -1,0 +1,7 @@
+ietf_host:
+  objects:
+    - HOST-RESOURCES-MIB::hrSystem
+    - HOST-RESOURCES-MIB::hrStorageEntry
+    - HOST-RESOURCES-MIB::hrDeviceEntry
+    - HOST-RESOURCES-MIB::hrProcessorEntry
+    - HOST-RESOURCES-MIB::hrPrinterEntry

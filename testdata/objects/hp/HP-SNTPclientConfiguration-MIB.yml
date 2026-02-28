@@ -1,0 +1,164 @@
+# HP-SNTPclientConfiguration-MIB::hpSntpConfig:
+#   mib: HP-SNTPclientConfiguration-MIB
+#   object: hpSntpConfig
+#   discovery_attribute: hpSntpConfigMode
+#   attributes:
+#     hpSntpConfigMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.1
+#       name: hp.SntpConfigMode
+#       syntax: EnumInteger
+#     hpSntpConfigPollInterval:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.2
+#       name: hp.SntpConfigPollInterval
+#       syntax: TicksSec
+#     hpSntpAuthentication:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.5
+#       name: hp.SntpAuthentication
+#       syntax: EnumInteger
+
+# HP-SNTPclientConfiguration-MIB::hpSntpServerEntry:
+#   mib: HP-SNTPclientConfiguration-MIB
+#   object: hpSntpServerEntry
+#   index:
+#     - type: IpAddress
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.3.1.1
+#       name: hp.SntpServerAddress
+#       syntax: IpAddressNoSuffix
+#   discovery_attribute: hpSntpServerVersion
+#   attributes:
+#     hpSntpServerVersion:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.3.1.2
+#       name: hp.SntpServerVersion
+#       syntax: Integer32
+#     hpSntpServerPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.3.1.3
+#       name: hp.SntpServerPriority
+#       syntax: Integer32
+
+# HP-SNTPclientConfiguration-MIB::hpSntpInetServerEntry:
+#   mib: HP-SNTPclientConfiguration-MIB
+#   object: hpSntpInetServerEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.4.1.1
+#       name: hp.SntpInetServerPriority
+#       syntax: Integer32
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.4.1.2
+#       name: hp.SntpInetServerAddressType
+#       syntax: skip
+#     - type: OctetString
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.4.1.3
+#       name: hp.SntpInetServerAddress
+#       syntax: IpAddressNoSuffix
+#   discovery_attribute: hpSntpInetServerVersion
+#   attributes:
+#     hpSntpInetServerVersion:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.4.1.4
+#       name: hp.SntpInetServerVersion
+#       syntax: Integer32
+#     hpSntpInetServerIsOobm:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.4.1.6
+#       name: hp.SntpInetServerIsOobm
+#     hpSntpInetServerAuthKeyId:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.4.1.7
+#       name: hp.SntpInetServerAuthKeyId
+#       syntax: UnsignedAsID
+
+# HP-SNTPclientConfiguration-MIB::hpSntpAuthenticationKeyEntry:
+#   mib: HP-SNTPclientConfiguration-MIB
+#   object: hpSntpAuthenticationKeyEntry
+#   index:
+#     - type: Unsigned32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.6.1.1
+#       name: hp.SntpAuthenticationKeyId
+#       syntax: UnsignedAsID
+#   discovery_attribute: hpSntpAuthenticationKeyAuthMode
+#   attributes:
+#     hpSntpAuthenticationKeyAuthMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.6.1.2
+#       name: hp.SntpAuthenticationKeyAuthMode
+#       syntax: EnumInteger
+#     hpSntpAuthenticationKeyValue:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.6.1.3
+#       name: hp.SntpAuthenticationKeyValue
+#       syntax: OctetString
+#     hpSntpAuthenticationKeyTrusted:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.6.1.4
+#       name: hp.SntpAuthenticationKeyTrusted
+#       syntax: TruthValue
+#     hpSntpAuthenticationKeyEncrypted:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.6.1.6
+#       name: hp.SntpAuthenticationKeyEncrypted
+#       syntax: OctetString
+
+HP-SNTPclientConfiguration-MIB::hpSntpServerStatisticsEntry:
+  mib: HP-SNTPclientConfiguration-MIB
+  object: hpSntpServerStatisticsEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.4.1.1
+      name: hp.SntpInetServerPriority
+      syntax: Integer32
+    - type: Integer32
+      oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.4.1.2
+      name: hp.SntpInetServerAddressType
+      syntax: skip
+    - type: OctetString
+      oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.4.1.3
+      name: hp.SntpInetServerAddress
+      syntax: IpAddressNoSuffix
+  discovery_attribute: hpSntpServerStatisticsAuthFailedPkts
+  attributes:
+    hpSntpServerStatisticsAuthFailedPkts:
+      oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.7.1.1
+      name: hp.SntpServerStatisticsAuthFailedPkts
+      syntax: Counter32
+      metric: counter
+
+HP-SNTPclientConfiguration-MIB::hpSntpBroadcastServerEntry:
+  mib: HP-SNTPclientConfiguration-MIB
+  object: hpSntpBroadcastServerEntry
+  index:
+    - type: IpAddress
+      oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.8.1.1
+      name: hp.SntpBroadcastServerAddress
+      syntax: IpAddressNoSuffix
+  discovery_attribute: hpSntpBroadcastServerStatisticsAuthFailedPkts
+  attributes:
+    hpSntpBroadcastServerStatisticsAuthFailedPkts:
+      oid: .1.3.6.1.4.1.11.2.14.11.1.8.1.8.1.2
+      name: hp.SntpBroadcastServerStatisticsAuthFailedPkts
+      syntax: Counter32
+      metric: counter
+
+# HP-SNTPclientConfiguration-MIB::hpTimeSyncMethodMod:
+#   mib: HP-SNTPclientConfiguration-MIB
+#   object: hpTimeSyncMethodMod
+#   discovery_attribute: hpTimeSyncMethod
+#   attributes:
+#     hpTimeSyncMethod:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.8.2.1
+#       name: hp.TimeSyncMethod
+#       syntax: EnumInteger
+
+HP-SNTPclientConfiguration-MIB::hpSntpStatistics:
+  mib: HP-SNTPclientConfiguration-MIB
+  object: hpSntpStatistics
+  discovery_attribute: hpSntpStatsRcvdPkts
+  attributes:
+    hpSntpStatsRcvdPkts:
+      oid: .1.3.6.1.4.1.11.2.14.11.1.8.4.1
+      name: hp.SntpStatsRcvdPkts
+      syntax: Counter32
+      metric: counter
+    hpSntpStatsSentPkts:
+      oid: .1.3.6.1.4.1.11.2.14.11.1.8.4.2
+      name: hp.SntpStatsSentPkts
+      syntax: Counter32
+      metric: counter
+    hpSntpStatsDroppedPkts:
+      oid: .1.3.6.1.4.1.11.2.14.11.1.8.4.3
+      name: hp.SntpStatsDroppedPkts
+      syntax: Counter32
+      metric: counter

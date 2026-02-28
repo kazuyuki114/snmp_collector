@@ -1,0 +1,309 @@
+ADSL-LINE-MIB::adslLineEntry:
+  mib: ADSL-LINE-MIB
+  object: adslLineEntry
+  index:
+    - type: Integer
+      oid: .1.3.6.1.2.1.2.2.1.1
+      name: netif # ifIndex
+      syntax: InterfaceIndex
+  discovery_attribute: adslLineType
+  attributes:
+    adslLineCoding:
+      oid: .1.3.6.1.2.1.10.94.1.1.1.1.1
+      name: ietf.adslLineCoding
+      syntax: EnumInteger
+    adslLineType:
+      oid: .1.3.6.1.2.1.10.94.1.1.1.1.2
+      name: ietf.adslLineType
+      syntax: EnumInteger
+    # adslLineSpecific:
+    #   oid: .1.3.6.1.2.1.10.94.1.1.1.1.3
+    #   name: ietf.adslLineSpecific
+    #   syntax: ObjectIdentifier
+    adslLineConfProfile:
+      oid: .1.3.6.1.2.1.10.94.1.1.1.1.4
+      name: ietf.adslLineConfProfile
+      syntax: DisplayString # SnmpAdminString
+    adslLineAlarmConfProfile:
+      oid: .1.3.6.1.2.1.10.94.1.1.1.1.5
+      name: ietf.adslLineAlarmConfProfile
+      syntax: DisplayString # SnmpAdminString
+    # Additional Attributes as Tags
+    ifDescr:
+      oid: .1.3.6.1.2.1.2.2.1.2
+      tag: true
+      name: netif.descr
+      syntax: DisplayString
+    ifType:
+      oid: .1.3.6.1.2.1.2.2.1.3
+      tag: true
+      name: netif.type
+      syntax: IANAifType
+    ifName:
+      oid: .1.3.6.1.2.1.31.1.1.1.1
+      tag: true
+      name: netif.name
+      syntax: DisplayString
+    ifAlias:
+      oid: .1.3.6.1.2.1.31.1.1.1.18
+      tag: true
+      name: netif.alias
+      syntax: DisplayString
+
+ADSL-LINE-MIB::adslAtucPhysEntry:
+  mib: ADSL-LINE-MIB
+  object: adslAtucPhysEntry
+  augments: ADSL-LINE-MIB::adslLineEntry
+  discovery_attribute: adslAtucInvVendorID
+  attributes:
+    adslAtucInvSerialNumber:
+      oid: .1.3.6.1.2.1.10.94.1.1.2.1.1
+      name: ietf.adslAtucInvSerialNumber
+      syntax: DisplayString # SnmpAdminString
+    adslAtucInvVendorID:
+      oid: .1.3.6.1.2.1.10.94.1.1.2.1.2
+      name: ietf.adslAtucInvVendorID
+      syntax: DisplayString # SnmpAdminString
+    adslAtucInvVersionNumber:
+      oid: .1.3.6.1.2.1.10.94.1.1.2.1.3
+      name: ietf.adslAtucInvVersionNumber
+      syntax: DisplayString # SnmpAdminString
+    adslAtucCurrSnrMgn:
+      oid: .1.3.6.1.2.1.10.94.1.1.2.1.4
+      name: ietf.adslAtucCurrSnrMgn
+      syntax: SignalDeciDBm
+      metric: gauge
+    adslAtucCurrAtn:
+      oid: .1.3.6.1.2.1.10.94.1.1.2.1.5
+      name: ietf.adslAtucCurrAtn
+      syntax: SignalDeciDBm
+      metric: gauge
+    adslAtucCurrStatus:
+      oid: .1.3.6.1.2.1.10.94.1.1.2.1.6
+      name: ietf.adslAtucCurrStatus
+      syntax: EnumBitmap
+    adslAtucCurrOutputPwr:
+      oid: .1.3.6.1.2.1.10.94.1.1.2.1.7
+      name: ietf.adslAtucCurrOutputPwr
+      syntax: SignalDeciDBm
+      metric: gauge
+    adslAtucCurrAttainableRate:
+      oid: .1.3.6.1.2.1.10.94.1.1.2.1.8
+      name: ietf.adslAtucCurrAttainableRate
+      syntax: BandwidthBits
+      metric: gauge
+
+ADSL-LINE-MIB::adslAturPhysEntry:
+  mib: ADSL-LINE-MIB
+  object: adslAturPhysEntry
+  augments: ADSL-LINE-MIB::adslLineEntry
+  discovery_attribute: adslAturInvVendorID
+  attributes:
+    adslAturInvSerialNumber:
+      oid: .1.3.6.1.2.1.10.94.1.1.3.1.1
+      name: ietf.adslAturInvSerialNumber
+      syntax: DisplayString # SnmpAdminString
+    adslAturInvVendorID:
+      oid: .1.3.6.1.2.1.10.94.1.1.3.1.2
+      name: ietf.adslAturInvVendorID
+      syntax: DisplayString # SnmpAdminString
+    adslAturInvVersionNumber:
+      oid: .1.3.6.1.2.1.10.94.1.1.3.1.3
+      name: ietf.adslAturInvVersionNumber
+      syntax: DisplayString # SnmpAdminString
+    adslAturCurrSnrMgn:
+      oid: .1.3.6.1.2.1.10.94.1.1.3.1.4
+      name: ietf.adslAturCurrSnrMgn
+      syntax: SignalDeciDBm
+      metric: gauge
+    adslAturCurrAtn:
+      oid: .1.3.6.1.2.1.10.94.1.1.3.1.5
+      name: ietf.adslAturCurrAtn
+      syntax: SignalDeciDBm
+      metric: gauge
+    adslAturCurrStatus:
+      oid: .1.3.6.1.2.1.10.94.1.1.3.1.6
+      name: ietf.adslAturCurrStatus
+      syntax: EnumBitmap
+    adslAturCurrOutputPwr:
+      oid: .1.3.6.1.2.1.10.94.1.1.3.1.7
+      name: ietf.adslAturCurrOutputPwr
+      syntax: SignalDeciDBm
+      metric: gauge
+    adslAturCurrAttainableRate:
+      oid: .1.3.6.1.2.1.10.94.1.1.3.1.8
+      name: ietf.adslAturCurrAttainableRate
+      syntax: BandwidthBits
+      metric: gauge
+
+ADSL-LINE-MIB::adslAtucChanEntry:
+  mib: ADSL-LINE-MIB
+  object: adslAtucChanEntry
+  augments: ADSL-LINE-MIB::adslLineEntry
+  discovery_attribute: adslAtucChanCurrTxRate
+  attributes:
+    adslAtucChanInterleaveDelay:
+      oid: .1.3.6.1.2.1.10.94.1.1.4.1.1
+      name: ietf.adslAtucChanInterleaveDelay
+      syntax: TicksMilliSec
+      metric: gauge
+    adslAtucChanCurrTxRate:
+      oid: .1.3.6.1.2.1.10.94.1.1.4.1.2
+      name: ietf.adslAtucChanCurrTxRate
+      syntax: BandwidthBits
+      metric: gauge
+    adslAtucChanPrevTxRate:
+      oid: .1.3.6.1.2.1.10.94.1.1.4.1.3
+      name: ietf.adslAtucChanPrevTxRate
+      syntax: BandwidthBits
+      metric: gauge
+    adslAtucChanCrcBlockLength:
+      oid: .1.3.6.1.2.1.10.94.1.1.4.1.4
+      name: ietf.adslAtucChanCrcBlockLength
+      syntax: BytesB
+      metric: gauge
+
+ADSL-LINE-MIB::adslAturChanEntry:
+  mib: ADSL-LINE-MIB
+  object: adslAturChanEntry
+  augments: ADSL-LINE-MIB::adslLineEntry
+  discovery_attribute: adslAturChanCurrTxRate
+  attributes:
+    adslAturChanInterleaveDelay:
+      oid: .1.3.6.1.2.1.10.94.1.1.5.1.1
+      name: ietf.adslAturChanInterleaveDelay
+      syntax: TicksMilliSec
+      metric: gauge
+    adslAturChanCurrTxRate:
+      oid: .1.3.6.1.2.1.10.94.1.1.5.1.2
+      name: ietf.adslAturChanCurrTxRate
+      syntax: BandwidthBits
+      metric: gauge
+    adslAturChanPrevTxRate:
+      oid: .1.3.6.1.2.1.10.94.1.1.5.1.3
+      name: ietf.adslAturChanPrevTxRate
+      syntax: BandwidthBits
+      metric: gauge
+    adslAturChanCrcBlockLength:
+      oid: .1.3.6.1.2.1.10.94.1.1.5.1.4
+      name: ietf.adslAturChanCrcBlockLength
+      syntax: BytesB
+      metric: gauge
+
+ADSL-LINE-MIB::adslAtucPerfDataEntry:
+  mib: ADSL-LINE-MIB
+  object: adslAtucPerfDataEntry
+  augments: ADSL-LINE-MIB::adslLineEntry
+  discovery_attribute: adslAtucPerfLoss
+  attributes:
+    adslAtucPerfLofs:
+      oid: .1.3.6.1.2.1.10.94.1.1.6.1.1
+      name: ietf.adslAtucPerfLofs
+      syntax: Counter32
+      metric: counter
+    adslAtucPerfLoss:
+      oid: .1.3.6.1.2.1.10.94.1.1.6.1.2
+      name: ietf.adslAtucPerfLoss
+      syntax: Counter32
+      metric: counter
+    adslAtucPerfLols:
+      oid: .1.3.6.1.2.1.10.94.1.1.6.1.3
+      name: ietf.adslAtucPerfLols
+      syntax: Counter32
+      metric: counter
+    adslAtucPerfLprs:
+      oid: .1.3.6.1.2.1.10.94.1.1.6.1.4
+      name: ietf.adslAtucPerfLprs
+      syntax: Counter32
+      metric: counter
+    adslAtucPerfESs:
+      oid: .1.3.6.1.2.1.10.94.1.1.6.1.5
+      name: ietf.adslAtucPerfESs
+      syntax: Counter32
+      metric: counter
+    adslAtucPerfInits:
+      oid: .1.3.6.1.2.1.10.94.1.1.6.1.6
+      name: ietf.adslAtucPerfInits
+      syntax: Counter32
+      metric: counter
+
+ADSL-LINE-MIB::adslAturPerfDataEntry:
+  mib: ADSL-LINE-MIB
+  object: adslAturPerfDataEntry
+  augments: ADSL-LINE-MIB::adslLineEntry
+  discovery_attribute: adslAturPerfLoss
+  attributes:
+    adslAturPerfLofs:
+      oid: .1.3.6.1.2.1.10.94.1.1.7.1.1
+      name: ietf.adslAturPerfLofs
+      syntax: Counter32
+      metric: counter
+    adslAturPerfLoss:
+      oid: .1.3.6.1.2.1.10.94.1.1.7.1.2
+      name: ietf.adslAturPerfLoss
+      syntax: Counter32
+      metric: counter
+    adslAturPerfLprs:
+      oid: .1.3.6.1.2.1.10.94.1.1.7.1.3
+      name: ietf.adslAturPerfLprs
+      syntax: Counter32
+      metric: counter
+    adslAturPerfESs:
+      oid: .1.3.6.1.2.1.10.94.1.1.7.1.4
+      name: ietf.adslAturPerfESs
+      syntax: Counter32
+      metric: counter
+
+ADSL-LINE-MIB::adslAtucChanPerfDataEntry:
+  mib: ADSL-LINE-MIB
+  object: adslAtucChanPerfDataEntry
+  augments: ADSL-LINE-MIB::adslLineEntry
+  discovery_attribute: adslAtucChanTransmittedBlks
+  attributes:
+    adslAtucChanReceivedBlks:
+      oid: .1.3.6.1.2.1.10.94.1.1.10.1.1
+      name: ietf.adslAtucChanReceivedBlks
+      syntax: Counter32
+      metric: counter
+    adslAtucChanTransmittedBlks:
+      oid: .1.3.6.1.2.1.10.94.1.1.10.1.2
+      name: ietf.adslAtucChanTransmittedBlks
+      syntax: Counter32
+      metric: counter
+    adslAtucChanCorrectedBlks:
+      oid: .1.3.6.1.2.1.10.94.1.1.10.1.3
+      name: ietf.adslAtucChanCorrectedBlks
+      syntax: Counter32
+      metric: counter
+    adslAtucChanUncorrectBlks:
+      oid: .1.3.6.1.2.1.10.94.1.1.10.1.4
+      name: ietf.adslAtucChanUncorrectBlks
+      syntax: Counter32
+      metric: counter
+
+ADSL-LINE-MIB::adslAturChanPerfDataEntry:
+  mib: ADSL-LINE-MIB
+  object: adslAturChanPerfDataEntry
+  augments: ADSL-LINE-MIB::adslLineEntry
+  discovery_attribute: adslAturChanTransmittedBlks
+  attributes:
+    adslAturChanReceivedBlks:
+      oid: .1.3.6.1.2.1.10.94.1.1.11.1.1
+      name: ietf.adslAturChanReceivedBlks
+      syntax: Counter32
+      metric: counter
+    adslAturChanTransmittedBlks:
+      oid: .1.3.6.1.2.1.10.94.1.1.11.1.2
+      name: ietf.adslAturChanTransmittedBlks
+      syntax: Counter32
+      metric: counter
+    adslAturChanCorrectedBlks:
+      oid: .1.3.6.1.2.1.10.94.1.1.11.1.3
+      name: ietf.adslAturChanCorrectedBlks
+      syntax: Counter32
+      metric: counter
+    adslAturChanUncorrectBlks:
+      oid: .1.3.6.1.2.1.10.94.1.1.11.1.4
+      name: ietf.adslAturChanUncorrectBlks
+      syntax: Counter32
+      metric: counter

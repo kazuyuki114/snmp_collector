@@ -1,0 +1,246 @@
+# HP-ICF-DOWNLOAD::hpicfDownload:
+#   mib: HP-ICF-DOWNLOAD
+#   object: hpicfDownload
+#   discovery_attribute: hpicfDownloadLogMaxSize
+#   attributes:
+#     hpicfDownloadLogMaxSize:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.2
+#       name: hp.icfDownloadLogMaxSize
+#       syntax: Integer32
+#     hpicfDownloadLogSize:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.3
+#       name: hp.icfDownloadLogSize
+#       syntax: Gauge32
+#       metric: gauge
+#     hpicfDownloadTftpConfig:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.5
+#       name: hp.icfDownloadTftpConfig
+#       syntax: EnumInteger
+#     hpicfDownloadTftpServerConfig:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.6
+#       name: hp.icfDownloadTftpServerConfig
+#       syntax: TruthValue
+#     hpicfDownloadTftp6Config:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.7
+#       name: hp.icfDownloadTftp6Config
+#       syntax: EnumInteger
+#     hpicfDownloadTftp6ServerConfig:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.8
+#       name: hp.icfDownloadTftp6ServerConfig
+#       syntax: TruthValue
+#     hpicfDownloadConfigFileUpdateEnabled:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.10
+#       name: hp.icfDownloadConfigFileUpdateEnabled
+#       syntax: TruthValue
+
+# HP-ICF-DOWNLOAD::hpicfDownloadEntry:
+#   mib: HP-ICF-DOWNLOAD
+#   object: hpicfDownloadEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.1
+#       name: hp.icfDownloadIndex
+#       syntax: EnumInteger
+#   discovery_attribute: hpicfDownloadOwnerAddress
+#   attributes:
+#     hpicfDownloadOwnerAddress:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.2
+#       name: hp.icfDownloadOwnerAddress
+#       syntax: TAddress
+#     hpicfDownloadOwnerDomain:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.3
+#       name: hp.icfDownloadOwnerDomain
+#       syntax: TDomain
+#     hpicfDownloadTAddress:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.4
+#       name: hp.icfDownloadTAddress
+#       syntax: TAddress
+#     hpicfDownloadTDomain:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.5
+#       name: hp.icfDownloadTDomain
+#       syntax: TDomain
+#     hpicfDownloadFilename:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.6
+#       name: hp.icfDownloadFilename
+#       syntax: DisplayString
+#     hpicfDownloadResetType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.7
+#       name: hp.icfDownloadResetType
+#       syntax: EnumInteger
+#     hpicfDownloadErrorStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.8
+#       name: hp.icfDownloadErrorStatus
+#       syntax: EnumInteger
+#     hpicfDownloadErrorText:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.9
+#       name: hp.icfDownloadErrorText
+#       syntax: DisplayString
+#     hpicfDownloadPassesLeft:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.11
+#       name: hp.icfDownloadPassesLeft
+#       syntax: Integer32
+#       metric: gauge
+#     hpicfDownloadOctetCount:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.12
+#       name: hp.icfDownloadOctetCount
+#       syntax: Integer32
+#       metric: gauge
+#     hpicfDownloadDestination:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.1.1.13
+#       name: hp.icfDownloadDestination
+#       syntax: DisplayString
+
+# HP-ICF-DOWNLOAD::hpicfDownloadLogEntry:
+#   mib: HP-ICF-DOWNLOAD
+#   object: hpicfDownloadLogEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.4.1.1
+#       name: hp.icfDlLogIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpicfDlLogOwnerAddress
+#   attributes:
+#     hpicfDlLogOwnerAddress:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.4.1.2
+#       name: hp.icfDlLogOwnerAddress
+#       syntax: TAddress
+#     hpicfDlLogOwnerDomain:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.4.1.3
+#       name: hp.icfDlLogOwnerDomain
+#       syntax: TDomain
+#     hpicfDlLogTAddress:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.4.1.4
+#       name: hp.icfDlLogTAddress
+#       syntax: TAddress
+#     hpicfDlLogTDomain:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.4.1.5
+#       name: hp.icfDlLogTDomain
+#       syntax: TDomain
+#     hpicfDlLogFilename:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.4.1.6
+#       name: hp.icfDlLogFilename
+#       syntax: DisplayString
+#     hpicfDlLogResetType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.4.1.7
+#       name: hp.icfDlLogResetType
+#       syntax: EnumInteger
+#     hpicfDlLogErrorStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.4.1.8
+#       name: hp.icfDlLogErrorStatus
+#       syntax: EnumInteger
+#     hpicfDlLogErrorText:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.4.1.9
+#       name: hp.icfDlLogErrorText
+#       syntax: DisplayString
+
+# HP-ICF-DOWNLOAD::hpicfDownloadInetEntry:
+#   mib: HP-ICF-DOWNLOAD
+#   object: hpicfDownloadInetEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.1
+#       name: hp.icfDownloadInetIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpicfDownloadInetTAddressType
+#   attributes:
+#     hpicfDownloadInetTAddressType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.2
+#       name: hp.icfDownloadInetTAddressType
+#       syntax: EnumInteger
+#     hpicfDownloadInetTAddress:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.3
+#       name: hp.icfDownloadInetTAddress
+#       syntax: IpAddressNoSuffix # InetAddress
+#     hpicfDownloadInetFilename:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.4
+#       name: hp.icfDownloadInetFilename
+#       syntax: DisplayString
+#     hpicfDownloadInetOwnerAddressType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.5
+#       name: hp.icfDownloadInetOwnerAddressType
+#       syntax: EnumInteger
+#     hpicfDownloadInetOwnerAddress:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.6
+#       name: hp.icfDownloadInetOwnerAddress
+#       syntax: IpAddressNoSuffix # InetAddress
+#     hpicfDownloadInetSourcePort:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.7
+#       name: hp.icfDownloadInetSourcePort
+#       syntax: Integer32
+#     hpicfDownloadInetDestinationPort:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.8
+#       name: hp.icfDownloadInetDestinationPort
+#       syntax: Integer32
+#     hpicfDownloadInetFileTransferType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.9
+#       name: hp.icfDownloadInetFileTransferType
+#       syntax: EnumInteger
+#     hpicfDownloadInetResetType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.10
+#       name: hp.icfDownloadInetResetType
+#       syntax: EnumInteger
+#     hpicfDownloadInetErrorStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.11
+#       name: hp.icfDownloadInetErrorStatus
+#       syntax: EnumInteger
+#     hpicfDownloadInetErrorText:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.12
+#       name: hp.icfDownloadInetErrorText
+#       syntax: DisplayString
+#     hpicfDownloadInetPassesLeft:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.14
+#       name: hp.icfDownloadInetPassesLeft
+#       syntax: Integer32
+#       metric: gauge
+#     hpicfDownloadInetOctetCount:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.15
+#       name: hp.icfDownloadInetOctetCount
+#       syntax: Integer32
+#       metric: gauge
+#     hpicfDownloadInetDestination:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.16
+#       name: hp.icfDownloadInetDestination
+#       syntax: DisplayString
+#     hpicfDownloadInetOpType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.17
+#       name: hp.icfDownloadInetOpType
+#       syntax: EnumInteger
+#     hpicfDownloadInetFileType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.18
+#       name: hp.icfDownloadInetFileType
+#       syntax: EnumInteger
+#     hpicfDownloadInetFileModeType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.19
+#       name: hp.icfDownloadInetFileModeType
+#       syntax: EnumInteger
+#     hpicfDownloadInetCoreDumpModule:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.9.1.20
+#       name: hp.icfDownloadInetCoreDumpModule
+#       syntax: IntegerAsID
+
+# HP-ICF-DOWNLOAD::hpicfDownloadAutoTftpEntry:
+#   mib: HP-ICF-DOWNLOAD
+#   object: hpicfDownloadAutoTftpEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.11.1.1
+#       name: hp.icfDownloadAutoTftpIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpicfDownloadAutoTftpAddressType
+#   attributes:
+#     hpicfDownloadAutoTftpAddressType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.11.1.2
+#       name: hp.icfDownloadAutoTftpAddressType
+#       syntax: EnumInteger
+#     hpicfDownloadAutoTftpAddress:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.11.1.3
+#       name: hp.icfDownloadAutoTftpAddress
+#       syntax: IpAddressNoSuffix # InetAddress
+#     hpicfDownloadAutoTftpRemoteFilename:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.11.1.4
+#       name: hp.icfDownloadAutoTftpRemoteFilename
+#       syntax: DisplayString
+#     hpicfDownloadAutoTftpAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.3.11.1.5
+#       name: hp.icfDownloadAutoTftpAdminStatus
+#       syntax: EnumInteger

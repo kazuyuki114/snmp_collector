@@ -1,0 +1,126 @@
+Q-BRIDGE-MIB::dot1qBase:
+  mib: Q-BRIDGE-MIB
+  object: dot1qBase
+  augments: BRIDGE-MIB::dot1dBase
+  discovery_attribute: dot1qVlanVersionNumber
+  attributes:
+    dot1qVlanVersionNumber:
+      oid: .1.3.6.1.2.1.17.7.1.1.1
+      name: bridge.vlan.version
+      syntax: EnumInteger
+    dot1qMaxVlanId:
+      oid: .1.3.6.1.2.1.17.7.1.1.2
+      name: bridge.vlan.id_max
+      syntax: IntegerAsID
+    dot1qMaxSupportedVlans:
+      oid: .1.3.6.1.2.1.17.7.1.1.3
+      name: bridge.vlans_supported
+      syntax: Unsigned32
+      metric: gauge
+    dot1qNumVlans:
+      oid: .1.3.6.1.2.1.17.7.1.1.4
+      name: bridge.vlans
+      syntax: Unsigned32
+      metric: gauge
+    dot1qGvrpStatus:
+      oid: .1.3.6.1.2.1.17.7.1.1.5
+      name: bridge.gvrp.status
+      syntax: EnumInteger
+
+Q-BRIDGE-MIB::dot1qPortVlanEntry:
+  mib: Q-BRIDGE-MIB
+  object: dot1qPortVlanEntry
+  augments: BRIDGE-MIB::dot1dBasePortEntry
+  discovery_attribute: dot1qPvid
+  attributes:
+    dot1qPvid:
+      oid: .1.3.6.1.2.1.17.7.1.4.5.1.1
+      tag: true
+      name: bridge.port.pvid
+      syntax: UnsignedAsID
+    dot1qPortAcceptableFrameTypes:
+      oid: .1.3.6.1.2.1.17.7.1.4.5.1.2
+      name: bridge.port.accept_frame_types
+      syntax: EnumInteger
+    dot1qPortIngressFiltering:
+      oid: .1.3.6.1.2.1.17.7.1.4.5.1.3
+      name: bridge.port.filter.ingress
+      syntax: TruthValue
+    dot1qPortGvrpStatus:
+      oid: .1.3.6.1.2.1.17.7.1.4.5.1.4
+      name: bridge.port.gvrp.status
+      syntax: EnumInteger
+    dot1qPortGvrpFailedRegistrations:
+      oid: .1.3.6.1.2.1.17.7.1.4.5.1.5
+      name: bridge.port.gvrp.regs.failed
+      syntax: Counter32
+      metric: counter
+    dot1qPortGvrpLastPduOrigin:
+      oid: .1.3.6.1.2.1.17.7.1.4.5.1.6
+      name: bridge.port.gvrp.last_origin
+      syntax: MacAddress
+    dot1qPortRestrictedVlanRegistration:
+      oid: .1.3.6.1.2.1.17.7.1.4.5.1.7
+      name: bridge.port.gvrp.restrict_vlan_reg
+      syntax: TruthValue
+
+Q-BRIDGE-MIB::dot1qPortVlanStatisticsEntry:
+  mib: Q-BRIDGE-MIB
+  object: dot1qPortVlanStatisticsEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.2.1.17.1.4.1.1
+      name: bridge.port.id
+      syntax: UnsignedAsID
+    - type: Unsigned32
+      oid: .1.3.6.1.2.1.17.7.1.4.2.1.2
+      name: vlan.tag.id
+      syntax: UnsignedAsID
+  discovery_attribute: dot1qTpVlanPortInFrames
+  attributes:
+    dot1qTpVlanPortInFrames:
+      oid: .1.3.6.1.2.1.17.7.1.4.6.1.1
+      name: bridge.port.transparent.vlan.frames.in
+      syntax: Counter32
+      metric: counter
+    dot1qTpVlanPortOutFrames:
+      oid: .1.3.6.1.2.1.17.7.1.4.6.1.2
+      name: bridge.port.transparent.vlan.frames.out
+      syntax: Counter32
+      metric: counter
+    dot1qTpVlanPortInDiscards:
+      oid: .1.3.6.1.2.1.17.7.1.4.6.1.3
+      name: bridge.port.transparent.vlan.frames.discard.in
+      syntax: Counter32
+      metric: counter
+
+Q-BRIDGE-MIB::dot1qPortVlanHCStatisticsEntry:
+  mib: Q-BRIDGE-MIB
+  object: dot1qPortVlanHCStatisticsEntry
+  augments: Q-BRIDGE-MIB::dot1qPortVlanStatisticsEntry
+  discovery_attribute: dot1qTpVlanPortHCInFrames
+  attributes:
+    dot1qTpVlanPortHCInFrames:
+      oid: .1.3.6.1.2.1.17.7.1.4.7.1.1
+      name: bridge.port.transparent.vlan.frames.in
+      syntax: Counter64
+      metric: counter
+      overrides:
+        object: Q-BRIDGE-MIB::dot1qPortVlanStatisticsEntry
+        attribute: dot1qTpVlanPortInFrames
+    dot1qTpVlanPortHCOutFrames:
+      oid: .1.3.6.1.2.1.17.7.1.4.7.1.2
+      name: bridge.port.transparent.vlan.frames.out
+      syntax: Counter64
+      metric: counter
+      overrides:
+        object: Q-BRIDGE-MIB::dot1qPortVlanStatisticsEntry
+        attribute: dot1qTpVlanPortOutFrames
+    dot1qTpVlanPortHCInDiscards:
+      oid: .1.3.6.1.2.1.17.7.1.4.7.1.3
+      name: bridge.port.transparent.vlan.frames.discard.in
+      syntax: Counter64
+      metric: counter
+      overrides:
+        object: Q-BRIDGE-MIB::dot1qPortVlanStatisticsEntry
+        attribute: dot1qTpVlanPortInDiscards

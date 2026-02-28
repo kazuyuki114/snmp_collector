@@ -1,0 +1,503 @@
+OSPFV3-MIB::ospfv3GeneralGroup:
+  mib: OSPFV3-MIB
+  object: ospfv3GeneralGroup
+  discovery_attribute: ospfv3RouterId
+  attributes:
+    ospfv3RouterId:
+      oid: .1.3.6.1.2.1.191.1.1.1
+      tag: true
+      name: ospf.router.id
+      syntax: UnsignedAsID # Ospfv3RouterIdTC
+    ospfv3AdminStatus:
+      oid: .1.3.6.1.2.1.191.1.1.2
+      name: ospf.state.admin
+      syntax: EnumInteger # Status
+    ospfv3VersionNumber:
+      oid: .1.3.6.1.2.1.191.1.1.3
+      tag: true
+      name: ospf.version.ver
+      syntax: IntegerAsID
+    ospfv3AreaBdrRtrStatus:
+      oid: .1.3.6.1.2.1.191.1.1.4
+      name: ospf.area_border_router.state
+      syntax: TruthValue
+    ospfv3ASBdrRtrStatus:
+      oid: .1.3.6.1.2.1.191.1.1.5
+      name: ospf.as_border_router.state
+      syntax: TruthValue
+    ospfv3AsScopeLsaCount:
+      oid: .1.3.6.1.2.1.191.1.1.6
+      name: ospf.lsdb.as_scope.lsas
+      syntax: Gauge32
+      metric: gauge
+    ospfv3AsScopeLsaCksumSum:
+      oid: .1.3.6.1.2.1.191.1.1.7
+      name: ospf.lsdb.as_scope.checksum
+      syntax: Unsigned32
+    ospfv3OriginateNewLsas:
+      oid: .1.3.6.1.2.1.191.1.1.8
+      name: ospf.lsas.new.out
+      syntax: Counter32
+      metric: counter
+    ospfv3RxNewLsas:
+      oid: .1.3.6.1.2.1.191.1.1.9
+      name: ospf.lsas.new.in
+      syntax: Counter32
+      metric: counter
+    ospfv3ExtLsaCount:
+      oid: .1.3.6.1.2.1.191.1.1.10
+      name: ospf.lsdb.as_extern.lsas
+      syntax: Gauge32
+      metric: gauge
+    ospfv3ExtAreaLsdbLimit:
+      oid: .1.3.6.1.2.1.191.1.1.11
+      name: ospf.lsdb.as_extern.limit
+      syntax: Integer32
+      metric: gauge
+    ospfv3ExitOverflowInterval:
+      oid: .1.3.6.1.2.1.191.1.1.12
+      name: ospf.lsdb.as_extern.overflow_interval
+      syntax: Unsigned32
+      metric: gauge
+    ospfv3DemandExtensions:
+      oid: .1.3.6.1.2.1.191.1.1.13
+      name: ospf.demand.support
+      syntax: TruthValue
+    ospfv3ReferenceBandwidth:
+      oid: .1.3.6.1.2.1.191.1.1.14
+      name: ospf.reference_bandwidth
+      syntax: BandwidthKBits
+      metric: gauge
+    ospfv3RestartSupport:
+      oid: .1.3.6.1.2.1.191.1.1.15
+      name: ospf.graceful_restart.support
+      syntax: EnumInteger
+    ospfv3RestartInterval:
+      oid: .1.3.6.1.2.1.191.1.1.16
+      name: ospf.graceful_restart.interval
+      syntax: Unsigned32 # Ospfv3UpToRefreshIntervalTC
+      metric: gauge
+    ospfv3RestartStrictLsaChecking:
+      oid: .1.3.6.1.2.1.191.1.1.17
+      name: ospf.graceful_restart.strict_check
+      syntax: TruthValue
+    ospfv3RestartStatus:
+      oid: .1.3.6.1.2.1.191.1.1.18
+      name: ospf.graceful_restart.state
+      syntax: EnumInteger
+    ospfv3RestartAge:
+      oid: .1.3.6.1.2.1.191.1.1.19
+      name: ospf.graceful_restart.age
+      syntax: Unsigned32 # Ospfv3UpToRefreshIntervalTC
+      metric: gauge
+    ospfv3RestartExitReason:
+      oid: .1.3.6.1.2.1.191.1.1.20
+      name: ospf.graceful_restart.exit_reason
+      syntax: EnumInteger
+    ospfv3StubRouterSupport:
+      oid: .1.3.6.1.2.1.191.1.1.22
+      name: ospf.stub-router.support
+      syntax: TruthValue
+    ospfv3StubRouterAdvertisement:
+      oid: .1.3.6.1.2.1.191.1.1.23
+      name: ospf.stub_router_advert.enable
+      syntax: EnumInteger
+    ospfv3DiscontinuityTime:
+      oid: .1.3.6.1.2.1.191.1.1.24
+      name: ospf.discontinuity_time
+      syntax: TimeStamp
+      metric: counter
+    ospfv3RestartTime:
+      oid: .1.3.6.1.2.1.191.1.1.25
+      name: ospf.graceful_restart.sysuptime
+      syntax: TimeStamp
+      metric: counter
+
+OSPFV3-MIB::ospfv3AreaEntry:
+  mib: OSPFV3-MIB
+  object: ospfv3AreaEntry
+  index:
+    - type: Unsigned32
+      oid: .1.3.6.1.2.1.191.1.2.1.1
+      name: ospf.area.id # ospfv3AreaId
+      syntax: UnsignedAsID # Ospfv3AreaIdTC
+  discovery_attribute: ospfv3AreaImportAsExtern
+  attributes:
+    ospfv3AreaImportAsExtern:
+      oid: .1.3.6.1.2.1.191.1.2.1.2
+      name: ospf.area.as_extern.import
+      syntax: EnumInteger
+    ospfv3AreaSpfRuns:
+      oid: .1.3.6.1.2.1.191.1.2.1.3
+      name: ospf.area.spf.runs
+      syntax: Counter32
+      metric: counter
+    ospfv3AreaBdrRtrCount:
+      oid: .1.3.6.1.2.1.191.1.2.1.4
+      name: ospf.area.area_border_routers
+      syntax: Gauge32
+      metric: gauge
+    ospfv3AreaAsBdrRtrCount:
+      oid: .1.3.6.1.2.1.191.1.2.1.5
+      name: ospf.area.as_border_routers
+      syntax: Gauge32
+      metric: gauge
+    ospfv3AreaScopeLsaCount:
+      oid: .1.3.6.1.2.1.191.1.2.1.6
+      name: ospf.area.lsdb.area_scope.lsas
+      syntax: Gauge32
+      metric: gauge
+    ospfv3AreaScopeLsaCksumSum:
+      oid: .1.3.6.1.2.1.191.1.2.1.7
+      name: ospf.area.lsdb.area_scope.checksum
+      syntax: Unsigned32
+    ospfv3AreaSummary:
+      oid: .1.3.6.1.2.1.191.1.2.1.8
+      name: ospf.area.summary_lsa.state
+      syntax: EnumInteger
+    ospfv3AreaStubMetric:
+      oid: .1.3.6.1.2.1.191.1.2.1.10
+      name: ospf.area.stub.metric.value
+      syntax: Unsigned32 # BigMetric
+      metric: gauge
+    ospfv3AreaNssaTranslatorRole:
+      oid: .1.3.6.1.2.1.191.1.2.1.11
+      name: ospf.area.nssa_translator.role
+      syntax: EnumInteger
+    ospfv3AreaNssaTranslatorState:
+      oid: .1.3.6.1.2.1.191.1.2.1.12
+      name: ospf.area.nssa_translator.state
+      syntax: EnumInteger
+    ospfv3AreaNssaTranslatorStabInterval:
+      oid: .1.3.6.1.2.1.191.1.2.1.13
+      name: ospf.area.nssa_translator.stability_interval
+      syntax: Unsigned32
+      metric: gauge
+    ospfv3AreaNssaTranslatorEvents:
+      oid: .1.3.6.1.2.1.191.1.2.1.14
+      name: ospf.area.nssa_translator.events
+      syntax: Counter32
+      metric: counter
+    ospfv3AreaStubMetricType:
+      oid: .1.3.6.1.2.1.191.1.2.1.15
+      name: ospf.area.stub.metric.type
+      syntax: EnumInteger
+    ospfv3AreaTEEnabled:
+      oid: .1.3.6.1.2.1.191.1.2.1.16
+      name: ospf.area.te.enable
+      syntax: TruthValue
+
+OSPFV3-MIB::ospfv3IfEntry:
+  mib: OSPFV3-MIB
+  object: ospfv3IfEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.2.1.191.1.7.1.1
+      name: ospf.netif # ospfv3IfIndex
+      syntax: InterfaceIndex
+    - type: Unsigned32
+      oid: .1.3.6.1.2.1.191.1.7.1.2
+      name: ospf.netif.inst.id # ospfv3IfInstId
+      syntax: UnsignedAsID # Ospfv3IfInstIdTC
+  discovery_attribute: ospfv3IfAreaId
+  attributes:
+    ospfv3IfAreaId:
+      oid: .1.3.6.1.2.1.191.1.7.1.3
+      tag: true
+      name: ospf.netif.area.id
+      syntax: UnsignedAsID # Ospfv3AreaIdTC
+    ospfv3IfType:
+      oid: .1.3.6.1.2.1.191.1.7.1.4
+      name: ospf.netif.type
+      syntax: EnumInteger
+    ospfv3IfAdminStatus:
+      oid: .1.3.6.1.2.1.191.1.7.1.5
+      name: ospf.netif.state.admin
+      syntax: EnumInteger # Status
+    ospfv3IfRtrPriority:
+      oid: .1.3.6.1.2.1.191.1.7.1.6
+      name: ospf.netif.designated_router.priority
+      syntax: Integer32 # DesignatedRouterPriority
+      metric: gauge
+    ospfv3IfTransitDelay:
+      oid: .1.3.6.1.2.1.191.1.7.1.7
+      name: ospf.netif.lsa.transit_delay
+      syntax: Unsigned32 # Ospfv3UpToRefreshIntervalTC
+      metric: gauge
+    ospfv3IfRetransInterval:
+      oid: .1.3.6.1.2.1.191.1.7.1.8
+      name: ospf.netif.lsa.retrans_interval
+      syntax: Unsigned32 # Ospfv3UpToRefreshIntervalTC
+      metric: gauge
+    ospfv3IfHelloInterval:
+      oid: .1.3.6.1.2.1.191.1.7.1.9
+      name: ospf.netif.hello_interval
+      syntax: Unsigned32 # HelloRange
+      metric: gauge
+    ospfv3IfRtrDeadInterval:
+      oid: .1.3.6.1.2.1.191.1.7.1.10
+      name: ospf.netif.router_dead_interval
+      syntax: Unsigned32 # Ospfv3DeadIntervalRangeTC
+      metric: gauge
+    ospfv3IfPollInterval:
+      oid: .1.3.6.1.2.1.191.1.7.1.11
+      name: ospf.netif.poll_interval
+      syntax: Unsigned32
+      metric: gauge
+    ospfv3IfState:
+      oid: .1.3.6.1.2.1.191.1.7.1.12
+      name: ospf.netif.state
+      syntax: EnumInteger
+    ospfv3IfDesignatedRouter:
+      oid: .1.3.6.1.2.1.191.1.7.1.13
+      name: ospf.netif.designated_router.id
+      syntax: UnsignedAsID # Ospfv3RouterIdTC
+    ospfv3IfBackupDesignatedRouter:
+      oid: .1.3.6.1.2.1.191.1.7.1.14
+      name: ospf.netif.designated_router_backup.id
+      syntax: UnsignedAsID # Ospfv3RouterIdTC
+    ospfv3IfEvents:
+      oid: .1.3.6.1.2.1.191.1.7.1.15
+      name: ospf.netif.state.chgs
+      syntax: Counter32
+      metric: counter
+    ospfv3IfDemand:
+      oid: .1.3.6.1.2.1.191.1.7.1.17
+      name: ospf.netif.demand
+      syntax: TruthValue
+    ospfv3IfMetricValue:
+      oid: .1.3.6.1.2.1.191.1.7.1.18
+      name: ospf.netif.metric
+      syntax: Unsigned32 # Metric
+      metric: gauge
+    ospfv3IfLinkScopeLsaCount:
+      oid: .1.3.6.1.2.1.191.1.7.1.19
+      name: ospf.netif.lsdb.link_scope.lsas
+      syntax: Gauge32
+      metric: gauge
+    ospfv3IfLinkLsaCksumSum:
+      oid: .1.3.6.1.2.1.191.1.7.1.20
+      name: ospf.netif.lsdb.link_scope.checksum
+      syntax: Unsigned32
+    ospfv3IfDemandNbrProbe:
+      oid: .1.3.6.1.2.1.191.1.7.1.21
+      name: ospf.netif.neighbor.probe
+      syntax: TruthValue
+    ospfv3IfDemandNbrProbeRetransLimit:
+      oid: .1.3.6.1.2.1.191.1.7.1.22
+      name: ospf.netif.neighbor.probe.retrans_limit
+      syntax: Unsigned32
+      metric: gauge
+    ospfv3IfDemandNbrProbeInterval:
+      oid: .1.3.6.1.2.1.191.1.7.1.23
+      name: ospf.netif.neighbor.probe_interval
+      syntax: Unsigned32
+      metric: gauge
+    ospfv3IfTEDisabled:
+      oid: .1.3.6.1.2.1.191.1.7.1.24
+      name: ospf.netif.te.disable
+      syntax: TruthValue
+    ospfv3IfLinkLSASuppression:
+      oid: .1.3.6.1.2.1.191.1.7.1.25
+      name: ospf.netif.lsa_suppress
+      syntax: TruthValue
+
+OSPFV3-MIB::ospfv3VirtIfEntry:
+  mib: OSPFV3-MIB
+  object: ospfv3VirtIfEntry
+  index:
+    - type: Unsigned32
+      oid: .1.3.6.1.2.1.191.1.8.1.1
+      name: ospf.virt_netif.area.id # ospfv3VirtIfAreaId
+      syntax: UnsignedAsID # Ospfv3AreaIdTC
+    - type: Unsigned32
+      oid: .1.3.6.1.2.1.191.1.8.1.2
+      name: ospf.virt_netif.neighbor.id # ospfv3VirtIfNeighbor
+      syntax: UnsignedAsID # Ospfv3RouterIdTC
+  discovery_attribute: ospfv3VirtIfIndex
+  attributes:
+    ospfv3VirtIfIndex:
+      oid: .1.3.6.1.2.1.191.1.8.1.3
+      tag: true
+      name: ospf.virt_netif
+      syntax: InterfaceIndex
+    ospfv3VirtIfInstId:
+      oid: .1.3.6.1.2.1.191.1.8.1.4
+      tag: true
+      name: ospf.virt_netif.inst.id
+      syntax: UnsignedAsID # Ospfv3IfInstIdTC
+    ospfv3VirtIfTransitDelay:
+      oid: .1.3.6.1.2.1.191.1.8.1.5
+      name: ospf.virt_netif.lsa.transit_delay
+      syntax: TicksSec # Ospfv3UpToRefreshIntervalTC
+      metric: gauge
+    ospfv3VirtIfRetransInterval:
+      oid: .1.3.6.1.2.1.191.1.8.1.6
+      name: ospf.virt_netif.lsa.retrans_interval
+      syntax: TicksSec # Ospfv3UpToRefreshIntervalTC
+      metric: gauge
+    ospfv3VirtIfHelloInterval:
+      oid: .1.3.6.1.2.1.191.1.8.1.7
+      name: ospf.virt_netif.hello_interval
+      syntax: TicksSec # HelloRange
+      metric: gauge
+    ospfv3VirtIfRtrDeadInterval:
+      oid: .1.3.6.1.2.1.191.1.8.1.8
+      name: ospf.virt_netif.router_dead_interval
+      syntax: TicksSec # Ospfv3DeadIntervalRangeTC
+      metric: gauge
+    ospfv3VirtIfState:
+      oid: .1.3.6.1.2.1.191.1.8.1.9
+      name: ospf.virt_netif.state
+      syntax: EnumInteger
+    ospfv3VirtIfEvents:
+      oid: .1.3.6.1.2.1.191.1.8.1.10
+      name: ospf.virt_netif.state.chgs
+      syntax: Counter32
+      metric: counter
+    ospfv3VirtIfLinkScopeLsaCount:
+      oid: .1.3.6.1.2.1.191.1.8.1.12
+      name: ospf.virt_netif.lsdb.link_scope.lsas
+      syntax: Gauge32
+      metric: gauge
+    ospfv3VirtIfLinkLsaCksumSum:
+      oid: .1.3.6.1.2.1.191.1.8.1.13
+      name: ospf.virt_netif.lsdb.link_scope.checksum
+      syntax: Unsigned32
+
+OSPFV3-MIB::ospfv3NbrEntry:
+  mib: OSPFV3-MIB
+  object: ospfv3NbrEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.2.1.191.1.9.1.1
+      name: ospf.neighbor.netif.index # ospfv3NbrIfIndex
+      syntax: InterfaceIndex
+    - type: Unsigned32
+      oid: .1.3.6.1.2.1.191.1.9.1.2
+      name: ospf.neighbor.netif.inst.id # ospfv3NbrIfInstId
+      syntax: UnsignedAsID # Ospfv3IfInstIdTC
+    - type: Unsigned32
+      oid: .1.3.6.1.2.1.191.1.9.1.3
+      name: ospf.neighbor.router.id # ospfv3NbrRtrId
+      syntax: UnsignedAsID # Ospfv3RouterIdTC
+  discovery_attribute: ospfv3NbrAddress
+  attributes:
+    ospfv3NbrAddress:
+      oid: .1.3.6.1.2.1.191.1.9.1.5
+      tag: true
+      name: ospf.neighbor.router
+      syntax: IpAddress
+    ospfv3NbrOptions:
+      oid: .1.3.6.1.2.1.191.1.9.1.6
+      name: ospf.neighbor.options.bits
+      syntax: Integer32
+    ospfv3NbrPriority:
+      oid: .1.3.6.1.2.1.191.1.9.1.7
+      name: ospf.neighbor.designated_router.priority
+      syntax: Integer32 # DesignatedRouterPriority
+      metric: gauge
+    ospfv3NbrState:
+      oid: .1.3.6.1.2.1.191.1.9.1.8
+      name: ospf.neighbor.state
+      syntax: EnumInteger
+    ospfv3NbrEvents:
+      oid: .1.3.6.1.2.1.191.1.9.1.9
+      name: ospf.neighbor.state.changes
+      syntax: Counter32
+      metric: counter
+    ospfv3NbrLsRetransQLen:
+      oid: .1.3.6.1.2.1.191.1.9.1.10
+      name: ospf.neighbor.link_state_retrans_queue
+      syntax: Gauge32
+      metric: gauge
+    ospfv3NbrHelloSuppressed:
+      oid: .1.3.6.1.2.1.191.1.9.1.11
+      name: ospf.neighbor.hello_suppress
+      syntax: TruthValue
+    ospfv3NbrIfId:
+      oid: .1.3.6.1.2.1.191.1.9.1.12
+      name: ospf.neighbor.router.netif
+      syntax: InterfaceIndex
+    ospfv3NbrRestartHelperStatus:
+      oid: .1.3.6.1.2.1.191.1.9.1.13
+      name: ospf.neighbor.graceful_restart.helper.state
+      syntax: EnumInteger
+    ospfv3NbrRestartHelperAge:
+      oid: .1.3.6.1.2.1.191.1.9.1.14
+      name: ospf.neighbor.graceful_restart.helper.age
+      syntax: Unsigned32 # Ospfv3UpToRefreshIntervalTC
+      metric: gauge
+    ospfv3NbrRestartHelperExitReason:
+      oid: .1.3.6.1.2.1.191.1.9.1.15
+      name: ospf.neighbor.graceful_restart.helper.exit_reason
+      syntax: EnumInteger
+
+OSPFV3-MIB::ospfv3VirtNbrEntry:
+  mib: OSPFV3-MIB
+  object: ospfv3VirtNbrEntry
+  index:
+    - type: Unsigned32
+      oid: .1.3.6.1.2.1.191.1.11.1.1
+      name: ospf.virt_neighbor.area.id # ospfv3VirtNbrArea
+      syntax: UnsignedAsID # Ospfv3AreaIdTC
+    - type: Unsigned32
+      oid: .1.3.6.1.2.1.191.1.11.1.2
+      name: ospf.virt_neighbor.router.id # ospfv3VirtNbrRtrId
+      syntax: UnsignedAsID # Ospfv3RouterIdTC
+  discovery_attribute: ospfv3VirtNbrIfIndex
+  attributes:
+    ospfv3VirtNbrIfIndex:
+      oid: .1.3.6.1.2.1.191.1.11.1.3
+      tag: true
+      name: ospf.virt_neighbor.netif
+      syntax: InterfaceIndex
+    ospfv3VirtNbrIfInstId:
+      oid: .1.3.6.1.2.1.191.1.11.1.4
+      tag: true
+      name: ospf.virt_neighbor.netif.inst.id
+      syntax: UnsignedAsID # Ospfv3IfInstIdTC
+    ospfv3VirtNbrAddress:
+      oid: .1.3.6.1.2.1.191.1.11.1.6
+      name: ospf.virt_neighbor.router
+      tag: true
+      syntax: IpAddress
+    ospfv3VirtNbrOptions:
+      oid: .1.3.6.1.2.1.191.1.11.1.7
+      name: ospf.virt_neighbor.options.bits
+      syntax: Integer32
+    ospfv3VirtNbrState:
+      oid: .1.3.6.1.2.1.191.1.11.1.8
+      name: ospf.virt_neighbor.state
+      syntax: EnumInteger
+    ospfv3VirtNbrEvents:
+      oid: .1.3.6.1.2.1.191.1.11.1.9
+      name: ospf.virt_neighbor.state.changes
+      syntax: Counter32
+      metric: counter
+    ospfv3VirtNbrLsRetransQLen:
+      oid: .1.3.6.1.2.1.191.1.11.1.10
+      name: ospf.virt_neighbor.link_state_retrans_queue
+      syntax: Gauge32
+      metric: gauge
+    ospfv3VirtNbrHelloSuppressed:
+      oid: .1.3.6.1.2.1.191.1.11.1.11
+      name: ospf.virt_neighbor.hello_suppress
+      syntax: TruthValue
+    ospfv3VirtNbrIfId:
+      oid: .1.3.6.1.2.1.191.1.11.1.12
+      name: ospf.virt_neighbor.router.netif
+      syntax: InterfaceIndex
+    ospfv3VirtNbrRestartHelperStatus:
+      oid: .1.3.6.1.2.1.191.1.11.1.13
+      name: ospf.virt_neighbor.graceful_restart.helper.state
+      syntax: EnumInteger
+    ospfv3VirtNbrRestartHelperAge:
+      oid: .1.3.6.1.2.1.191.1.11.1.14
+      name: ospf.virt_neighbor.graceful_restart.helper.age
+      syntax: TicksSec # Ospfv3UpToRefreshIntervalTC
+      metric: gauge
+    ospfv3VirtNbrRestartHelperExitReason:
+      oid: .1.3.6.1.2.1.191.1.11.1.15
+      name: ospf.virt_neighbor.graceful_restart.helper.exit_reason
+      syntax: EnumInteger

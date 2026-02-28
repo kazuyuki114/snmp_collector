@@ -1,0 +1,1054 @@
+# CONFIG-MIB::hpSwitchSystemConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchSystemConfig
+#   discovery_attribute: hpSwitchAutoReboot
+#   attributes:
+#     hpSwitchAutoReboot:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.1
+#       name: hp.SwitchAutoReboot
+#       syntax: EnumInteger
+#     hpSwitchTimeZone:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.2
+#       name: hp.SwitchTimeZone
+#       syntax: Integer32
+#     hpSwitchDaylightTimeRule:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.3
+#       name: hp.SwitchDaylightTimeRule
+#       syntax: EnumInteger
+#     hpSwitchDaylightBeginningMonth:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.4
+#       name: hp.SwitchDaylightBeginningMonth
+#       syntax: Integer32
+#     hpSwitchDaylightBeginningDay:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.5
+#       name: hp.SwitchDaylightBeginningDay
+#       syntax: Integer32
+#     hpSwitchDaylightEndingMonth:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.6
+#       name: hp.SwitchDaylightEndingMonth
+#       syntax: Integer32
+#     hpSwitchDaylightEndingDay:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.7
+#       name: hp.SwitchDaylightEndingDay
+#       syntax: Integer32
+#     hpSwitchSystemConfigStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.8
+#       name: hp.SwitchSystemConfigStatus
+#       syntax: EnumInteger
+#     hpSwitchSystemPortLEDMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.9
+#       name: hp.SwitchSystemPortLEDMode
+#       syntax: EnumInteger
+#     hpSwitchControlUnknownIPMulticast:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.10
+#       name: hp.SwitchControlUnknownIPMulticast
+#       syntax: EnumInteger
+#     hpSwitchIgmpDelayedGroupFlushTimer:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.11
+#       name: hp.SwitchIgmpDelayedGroupFlushTimer
+#       syntax: TicksSec
+#     hpSwitchMaxFrameSize:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.12
+#       name: hp.SwitchMaxFrameSize
+#       syntax: BytesB
+#     hpSwitchIpMTU:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.13
+#       name: hp.SwitchIpMTU
+#       syntax: BytesB
+#     hpSwitchAllowV1Modules:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.1.14
+#       name: hp.SwitchAllowV1Modules
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchConsoleConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchConsoleConfig
+#   discovery_attribute: hpSwitchTelnetAdminStatus
+#   attributes:
+#     hpSwitchTelnetAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.2.1
+#       name: hp.SwitchTelnetAdminStatus
+#       syntax: EnumInteger
+#     hpSwitchTerminalType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.2.2
+#       name: hp.SwitchTerminalType
+#       syntax: EnumInteger
+#     hpSwitchConsoleRefRate:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.2.3
+#       name: hp.SwitchConsoleRefRate
+#       syntax: EnumInteger
+#     hpSwitchDisplayedEvent:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.2.4
+#       name: hp.SwitchDisplayedEvent
+#       syntax: EnumInteger
+#     hpSwitchConsoleConfigStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.2.5
+#       name: hp.SwitchConsoleConfigStatus
+#       syntax: EnumInteger
+#     hpSwitchConsoleConfigLogoutPrompt:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.2.6
+#       name: hp.SwitchConsoleConfigLogoutPrompt
+#       syntax: TruthValue
+
+# CONFIG-MIB::hpSwitchPortConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchPortConfig
+#   discovery_attribute: hpSwitchPortConfigStatus
+#   attributes:
+#     hpSwitchPortConfigStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.2
+#       name: hp.SwitchPortConfigStatus
+#       syntax: EnumInteger
+#     hpSwitchLinkUpDownTrapAllPortsStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.3
+#       name: hp.SwitchLinkUpDownTrapAllPortsStatus
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchPortEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchPortEntry
+#   index:
+#     - type: Integer
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.1
+#       name: netif # hpSwitchPortIndex
+#       syntax: InterfaceIndex
+#   discovery_attribute: hpSwitchPortType
+#   attributes:
+#     hpSwitchPortType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.2
+#       name: hp.SwitchPortType
+#       syntax: EnumInteger
+#     hpSwitchPortDescr:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.3
+#       name: hp.SwitchPortDescr
+#       syntax: DisplayString
+#     hpSwitchPortAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.4
+#       name: hp.SwitchPortAdminStatus
+#       syntax: EnumInteger
+#     hpSwitchPortEtherMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.5
+#       name: hp.SwitchPortEtherMode
+#       syntax: EnumInteger
+#     hpSwitchPortVgMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.6
+#       name: hp.SwitchPortVgMode
+#       syntax: EnumInteger
+#     hpSwitchPortLinkbeat:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.7
+#       name: hp.SwitchPortLinkbeat
+#       syntax: EnumInteger
+#     hpSwitchPortTrunkGroup:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.8
+#       name: hp.SwitchPortTrunkGroup
+#       syntax: IntegerAsID
+#     hpSwitchPortBcastLimit:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.9
+#       name: hp.SwitchPortBcastLimit
+#       syntax: Percent100
+#     hpSwitchPortFastEtherMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.10
+#       name: hp.SwitchPortFastEtherMode
+#       syntax: EnumInteger
+#     hpSwitchPortFlowControl:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.11
+#       name: hp.SwitchPortFlowControl
+#       syntax: EnumInteger
+#     hpSwitchPortTrunkType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.13
+#       name: hp.SwitchPortTrunkType
+#       syntax: EnumInteger
+#     hpSwitchPortTrunkLACPStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.14
+#       name: hp.SwitchPortTrunkLACPStatus
+#       syntax: EnumInteger
+#     hpSwitchPortMDIXStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.15
+#       name: hp.SwitchPortMDIXStatus
+#       syntax: EnumInteger
+#     hpSwitchPortAutoMDIX:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.16
+#       name: hp.SwitchPortAutoMDIX
+#       syntax: EnumInteger
+#     hpSwitchPortLACPKey:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.17
+#       name: hp.SwitchPortLACPKey
+#       syntax: IntegerAsID
+#     hpSwitchPortEEEAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.19
+#       name: hp.SwitchPortEEEAdminStatus
+#       syntax: EnumInteger
+#     hpSwitchPortEEEOperStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.20
+#       name: hp.SwitchPortEEEOperStatus
+#       syntax: EnumInteger
+#     hpSwitchPortEEECurrentTwSysTx:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.21
+#       name: hp.SwitchPortEEECurrentTwSysTx
+#       syntax: TicksMicroSec
+#     hpSwitchPortEEEMinTwSysTx:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.22
+#       name: hp.SwitchPortEEEMinTwSysTx
+#       syntax: TicksMicroSec
+#     hpSwitchPortEEEMaxTwSysTx:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.3.1.1.23
+#       name: hp.SwitchPortEEEMaxTwSysTx
+#       syntax: TicksMicroSec
+#     # Additional Attributes as Tags
+#     ifDescr:
+#       oid: .1.3.6.1.2.1.2.2.1.2
+#       tag: true
+#       name: netif.descr
+#       syntax: DisplayString
+#     ifType:
+#       oid: .1.3.6.1.2.1.2.2.1.3
+#       tag: true
+#       name: netif.type
+#       syntax: IANAifType
+#     ifName:
+#       oid: .1.3.6.1.2.1.31.1.1.1.1
+#       tag: true
+#       name: netif.name
+#       syntax: DisplayString
+#     ifAlias:
+#       oid: .1.3.6.1.2.1.31.1.1.1.18
+#       tag: true
+#       name: netif.alias
+#       syntax: DisplayString
+
+# CONFIG-MIB::hpSwitchIpConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchIpConfig
+#   discovery_attribute: hpSwitchIpTimepAdminStatus
+#   attributes:
+#     hpSwitchIpTimepAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.5.1
+#       name: hp.SwitchIpTimepAdminStatus
+#       syntax: EnumInteger
+#     hpSwitchIpTimepServerAddr:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.5.2
+#       name: hp.SwitchIpTimepServerAddr
+#       syntax: IpAddressNoSuffix
+#     hpSwitchIpTimepPollInterval:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.5.3
+#       name: hp.SwitchIpTimepPollInterval
+#       syntax: TicksMin
+#     hpSwitchIpConfigStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.5.5
+#       name: hp.SwitchIpConfigStatus
+#       syntax: EnumInteger
+#     hpSwitchIpTftpMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.5.6
+#       name: hp.SwitchIpTftpMode
+#       syntax: EnumInteger
+#     hpSwitchIpTimepInetServerAddrType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.5.7
+#       name: hp.SwitchIpTimepInetServerAddrType
+#       syntax: EnumInteger
+#     hpSwitchIpTimepInetServerAddr:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.5.8
+#       name: hp.SwitchIpTimepInetServerAddr
+#       syntax: IpAddressNoSuffix
+#     hpSwitchIpTimepIsOobm:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.5.9
+#       name: hp.SwitchIpTimepIsOobm
+#       syntax: TruthValue
+
+# CONFIG-MIB::hpSwitchSerialLinkConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchSerialLinkConfig
+#   discovery_attribute: hpSwitchSLinkBaudRate
+#   attributes:
+#     hpSwitchSLinkBaudRate:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.1
+#       name: hp.SwitchSLinkBaudRate
+#       syntax: EnumInteger
+#     hpSwitchSLinkFlowCtrl:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.2
+#       name: hp.SwitchSLinkFlowCtrl
+#       syntax: EnumInteger
+#     hpSwitchSLinkConnInactTime:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.3
+#       name: hp.SwitchSLinkConnInactTime
+#       syntax: TicksMin
+#     hpSwitchSLinkModemConnTime:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.4
+#       name: hp.SwitchSLinkModemConnTime
+#       syntax: Integer32
+#       metric: gauge
+#     hpSwitchSLinkModemLostRecvTime:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.5
+#       name: hp.SwitchSLinkModemLostRecvTime
+#       syntax: TicksSec
+#     hpSwitchSLinkModemDisConnTime:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.6
+#       name: hp.SwitchSLinkModemDisConnTime
+#       syntax: TicksSec
+#     hpSwitchSLinkParity:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.7
+#       name: hp.SwitchSLinkParity
+#       syntax: EnumInteger
+#     hpSwitchSLinkCharBits:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.8
+#       name: hp.SwitchSLinkCharBits
+#       syntax: EnumInteger
+#     hpSwitchSLinkStopBits:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.9
+#       name: hp.SwitchSLinkStopBits
+#       syntax: EnumInteger
+#     hpSwitchSLinkConfigStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.6.10
+#       name: hp.SwitchSLinkConfigStatus
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchFilterConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchFilterConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.8.1.1.1
+#       name: hp.SwitchFilterIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchFilterType
+#   attributes:
+#     hpSwitchFilterType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.8.1.1.2
+#       name: hp.SwitchFilterType
+#       syntax: EnumInteger
+#     hpSwitchFilterSrcPort:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.8.1.1.3
+#       name: hp.SwitchFilterSrcPort
+#       syntax: Integer32
+#     hpSwitchFilterMacAddr:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.8.1.1.4
+#       name: hp.SwitchFilterMacAddr
+#       syntax: MacAddressNoSuffix
+#     hpSwitchFilterProtocolType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.8.1.1.5
+#       name: hp.SwitchFilterProtocolType
+#       syntax: Integer32
+#     hpSwitchFilterPortMask:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.8.1.1.6
+#       name: hp.SwitchFilterPortMask
+#       syntax: OctetString
+#     hpSwitchFilterName:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.8.1.1.8
+#       name: hp.SwitchFilterName
+#       syntax: DisplayString
+
+# CONFIG-MIB::hpSwitchProbeConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchProbeConfig
+#   discovery_attribute: hpSwitchProbeType
+#   attributes:
+#     hpSwitchProbeType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.9.1
+#       name: hp.SwitchProbeType
+#       syntax: EnumInteger
+#     hpSwitchProbedVlanId:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.9.2
+#       name: hp.SwitchProbedVlanId
+#       syntax: IntegerAsID
+#     hpSwitchProbePort:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.9.3
+#       name: hp.SwitchProbePort
+#       syntax: Integer32
+#     hpSwitchProbeAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.9.4
+#       name: hp.SwitchProbeAdminStatus
+#       syntax: EnumInteger
+#     hpSwitchProbedPortMask:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.9.5
+#       name: hp.SwitchProbedPortMask
+#       syntax: OctetString
+
+# CONFIG-MIB::hpSwitchABCConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchABCConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.12.1.1.1
+#       name: hp.SwitchABCConfigVlan
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchABCConfigControl
+#   attributes:
+#     hpSwitchABCConfigControl:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.12.1.1.2
+#       name: hp.SwitchABCConfigControl
+#       syntax: EnumInteger
+#     hpSwitchABCConfigIpRipControl:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.12.1.1.3
+#       name: hp.SwitchABCConfigIpRipControl
+#       syntax: EnumInteger
+#     hpSwitchABCConfigVlanBcastLimit:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.12.1.1.5
+#       name: hp.SwitchABCConfigVlanBcastLimit
+#       syntax: Percent100
+#     hpSwitchABCConfigAutoGatewayConfig:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.12.1.1.7
+#       name: hp.SwitchABCConfigAutoGatewayConfig
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchStpConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchStpConfig
+#   discovery_attribute: hpSwitchStpTrapCntl
+#   attributes:
+#     hpSwitchStpTrapCntl:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.3
+#       name: hp.SwitchStpTrapCntl
+#       syntax: EnumBitmap
+#     hpSwitchStpBpduProtectionTimeout:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.4
+#       name: hp.SwitchStpBpduProtectionTimeout
+#       syntax: TicksSec
+
+# CONFIG-MIB::hpSwitchStpVlanEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchStpVlanEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.1.1.1
+#       name: hp.SwitchStpVlan
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchStpAdminStatus
+#   attributes:
+#     hpSwitchStpAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.1.1.2
+#       name: hp.SwitchStpAdminStatus
+#       syntax: EnumInteger
+#     hpSwitchStpPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.1.1.3
+#       name: hp.SwitchStpPriority
+#       syntax: Integer32
+#     hpSwitchStpMaxAge:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.1.1.4
+#       name: hp.SwitchStpMaxAge
+#       syntax: TicksCentiSec
+#     hpSwitchStpHelloTime:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.1.1.5
+#       name: hp.SwitchStpHelloTime
+#       syntax: TicksCentiSec
+#     hpSwitchStpForwardDelay:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.1.1.6
+#       name: hp.SwitchStpForwardDelay
+#       syntax: TicksCentiSec
+
+CONFIG-MIB::hpSwitchStpPortEntry:
+  mib: CONFIG-MIB
+  object: hpSwitchStpPortEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.1
+      name: hp.SwitchStpPort
+      syntax: Integer32
+  discovery_attribute: hpSwitchStpPortType
+  attributes:
+    hpSwitchStpPortType:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.2
+      name: hp.SwitchStpPortType
+      syntax: EnumInteger
+    hpSwitchStpPortSrcMac:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.3
+      name: hp.SwitchStpPortSrcMac
+      syntax: MacAddressNoSuffix
+    hpSwitchStpPortPriority:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.4
+      name: hp.SwitchStpPortPriority
+      syntax: Integer32
+    hpSwitchStpPortPathCost:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.5
+      name: hp.SwitchStpPortPathCost
+      syntax: Integer32
+    hpSwitchStpPortMode:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.6
+      name: hp.SwitchStpPortMode
+      syntax: EnumInteger
+    hpSwitchStpPortBpduFilter:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.7
+      name: hp.SwitchStpPortBpduFilter
+      syntax: EnumInteger
+    hpSwitchStpPortBpduProtection:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.8
+      name: hp.SwitchStpPortBpduProtection
+      syntax: EnumInteger
+    hpSwitchStpPortErrantBpduCounter:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.9
+      name: hp.SwitchStpPortErrantBpduCounter
+      syntax: Counter32
+      metric: counter
+    hpSwitchStpPortPvstFilter:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.10
+      name: hp.SwitchStpPortPvstFilter
+      syntax: TruthValue
+    hpSwitchStpPortPvstProtection:
+      oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.14.2.1.11
+      name: hp.SwitchStpPortPvstProtection
+      syntax: TruthValue
+
+# CONFIG-MIB::hpSwitchIgmpConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchIgmpConfig
+#   discovery_attribute: hpSwitchIgmpForcedLeaveInterval
+#   attributes:
+#     hpSwitchIgmpForcedLeaveInterval:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.4
+#       name: hp.SwitchIgmpForcedLeaveInterval
+#       syntax: Integer32
+
+# CONFIG-MIB::hpSwitchIgmpConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchIgmpConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.1.1.1
+#       name: hp.SwitchIgmpVlanIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchIgmpState
+#   attributes:
+#     hpSwitchIgmpState:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.1.1.2
+#       name: hp.SwitchIgmpState
+#       syntax: EnumInteger
+#     hpSwitchIgmpQuerierState:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.1.1.3
+#       name: hp.SwitchIgmpQuerierState
+#       syntax: EnumInteger
+#     hpSwitchIgmpPriorityState:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.1.1.4
+#       name: hp.SwitchIgmpPriorityState
+#       syntax: EnumInteger
+#     hpSwitchIgmpQuerierInterval:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.1.1.5
+#       name: hp.SwitchIgmpQuerierInterval
+#       syntax: TicksSec
+#     hpSwitchIgmpProxyDomainMap:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.1.1.6
+#       name: hp.SwitchIgmpProxyDomainMap
+#       syntax: Integer32
+
+# CONFIG-MIB::hpSwitchIgmpPortConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchIgmpPortConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.2.1.1
+#       name: hp.SwitchIgmpPortIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchIgmpPortType
+#   attributes:
+#     hpSwitchIgmpPortType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.2.1.2
+#       name: hp.SwitchIgmpPortType
+#       syntax: EnumInteger
+#     hpSwitchIgmpIpMcastState:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.2.1.3
+#       name: hp.SwitchIgmpIpMcastState
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchIgmpPortConfigEntry2:
+#   mib: CONFIG-MIB
+#   object: hpSwitchIgmpPortConfigEntry2
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.3.1.1
+#       name: hp.SwitchIgmpPortVlanIndex2
+#       syntax: IntegerAsID
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.3.1.2
+#       name: hp.SwitchIgmpPortIndex2
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchIgmpPortType2
+#   attributes:
+#     hpSwitchIgmpPortType2:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.3.1.3
+#       name: hp.SwitchIgmpPortType2
+#       syntax: EnumInteger
+#     hpSwitchIgmpIpMcastState2:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.3.1.4
+#       name: hp.SwitchIgmpIpMcastState2
+#       syntax: EnumInteger
+#     hpSwitchIgmpPortForcedLeaveState:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.3.1.5
+#       name: hp.SwitchIgmpPortForcedLeaveState
+#       syntax: EnumInteger
+#     hpSwitchIgmpPortFastLeaveState:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.15.3.1.6
+#       name: hp.SwitchIgmpPortFastLeaveState
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchCosConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchCosConfig
+#   discovery_attribute: hpSwitchCosLastChange
+#   attributes:
+#     hpSwitchCosLastChange:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.8
+#       name: hp.SwitchCosLastChange
+#       syntax: TimeStamp
+#     hpSwitchConfigCosLastConfigError:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.9
+#       name: hp.SwitchConfigCosLastConfigError
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchCosPortConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchCosPortConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.1.1.1
+#       name: hp.SwitchCosPortIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchCosPortType
+#   attributes:
+#     hpSwitchCosPortType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.1.1.2
+#       name: hp.SwitchCosPortType
+#       syntax: EnumInteger
+#     hpSwitchCosPortPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.1.1.3
+#       name: hp.SwitchCosPortPriority
+#       syntax: Integer32
+#     hpSwitchCosPortDSCPPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.1.1.4
+#       name: hp.SwitchCosPortDSCPPolicy
+#       syntax: Integer32
+#     hpSwitchCosPortResolvedPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.1.1.5
+#       name: hp.SwitchCosPortResolvedPriority
+#       syntax: Integer32
+#     hpSwitchCosPortApplyPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.1.1.6
+#       name: hp.SwitchCosPortApplyPolicy
+#       syntax: EnumInteger
+#     hpSwitchCosPortTrustMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.1.1.7
+#       name: hp.SwitchCosPortTrustMode
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchCosVlanConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchCosVlanConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.2.1.1
+#       name: hp.SwitchCosVlanIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchCosVlanPriority
+#   attributes:
+#     hpSwitchCosVlanPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.2.1.2
+#       name: hp.SwitchCosVlanPriority
+#       syntax: Integer32
+#     hpSwitchCosVlanDSCPPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.2.1.3
+#       name: hp.SwitchCosVlanDSCPPolicy
+#       syntax: Integer32
+#     hpSwitchCosVlanResolvedPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.2.1.4
+#       name: hp.SwitchCosVlanResolvedPriority
+#       syntax: Integer32
+#     hpSwitchCosVlanApplyPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.2.1.5
+#       name: hp.SwitchCosVlanApplyPolicy
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchCosProtocolConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchCosProtocolConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.3.1.1
+#       name: hp.SwitchCosProtocolType
+#       syntax: EnumInteger
+#   discovery_attribute: hpSwitchCosProtocolPriority
+#   attributes:
+#     hpSwitchCosProtocolPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.3.1.2
+#       name: hp.SwitchCosProtocolPriority
+#       syntax: Integer32
+
+# CONFIG-MIB::hpSwitchCosAddressConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchCosAddressConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.1
+#       name: hp.SwitchCosAddressIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchCosAddressType
+#   attributes:
+#     hpSwitchCosAddressType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.2
+#       name: hp.SwitchCosAddressType
+#       syntax: EnumInteger
+#     hpSwitchCosAddressIp:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.3
+#       name: hp.SwitchCosAddressIp
+#       syntax: IpAddressNoSuffix
+#     hpSwitchCosAddressPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.4
+#       name: hp.SwitchCosAddressPriority
+#       syntax: Integer32
+#     hpSwitchCosAddressDSCPPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.6
+#       name: hp.SwitchCosAddressDSCPPolicy
+#       syntax: Integer32
+#     hpSwitchCosAddressResolvedPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.7
+#       name: hp.SwitchCosAddressResolvedPriority
+#       syntax: Integer32
+#     hpSwitchCosAddressApplyPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.8
+#       name: hp.SwitchCosAddressApplyPolicy
+#       syntax: EnumInteger
+#     hpSwitchCosIpv4AddressMask:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.9
+#       name: hp.SwitchCosIpv4AddressMask
+#       syntax: IpAddressNoSuffix
+#     hpSwitchCosAddressIpv6:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.10
+#       name: hp.SwitchCosAddressIpv6
+#       syntax: IpAddressNoSuffix
+#     hpSwitchCosAddressIpv6PrefixLength:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.4.1.11
+#       name: hp.SwitchCosAddressIpv6PrefixLength
+#       syntax: Unsigned32
+
+# CONFIG-MIB::hpSwitchCosTosConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchCosTosConfig
+#   discovery_attribute: hpSwitchCosTosConfigMode
+#   attributes:
+#     hpSwitchCosTosConfigMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.5.1
+#       name: hp.SwitchCosTosConfigMode
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchCosTosConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchCosTosConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.5.2.1.1
+#       name: hp.SwitchCosTosIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchCosTosPriority
+#   attributes:
+#     hpSwitchCosTosPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.5.2.1.2
+#       name: hp.SwitchCosTosPriority
+#       syntax: Integer32
+#     hpSwitchCosTosDSCPPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.5.2.1.3
+#       name: hp.SwitchCosTosDSCPPolicy
+#       syntax: Integer32
+#     hpSwitchCosTosResolvedPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.5.2.1.4
+#       name: hp.SwitchCosTosResolvedPriority
+#       syntax: Integer32
+#     hpSwitchCosTosApplyPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.5.2.1.5
+#       name: hp.SwitchCosTosApplyPolicy
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchCosDSCPPolicyConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchCosDSCPPolicyConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.6.1.1
+#       name: hp.SwitchCosDSCPPolicyIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchCosDSCPPolicyPriority
+#   attributes:
+#     hpSwitchCosDSCPPolicyPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.6.1.2
+#       name: hp.SwitchCosDSCPPolicyPriority
+#       syntax: Integer32
+#     hpSwitchCosDSCPPolicyName:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.6.1.3
+#       name: hp.SwitchCosDSCPPolicyName
+#       syntax: DisplayString
+
+# CONFIG-MIB::hpSwitchCosAppTypeConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchCosAppTypeConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.1
+#       name: hp.SwitchCosAppTypeConfigIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchCosAppTypeConfigType
+#   attributes:
+#     hpSwitchCosAppTypeConfigType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.2
+#       name: hp.SwitchCosAppTypeConfigType
+#       syntax: EnumInteger
+#     hpSwitchCosAppTypeSrcPort:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.3
+#       name: hp.SwitchCosAppTypeSrcPort
+#       syntax: Integer32
+#     hpSwitchCosAppTypeDestPort:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.4
+#       name: hp.SwitchCosAppTypeDestPort
+#       syntax: Integer32
+#     hpSwitchCosAppTypePriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.5
+#       name: hp.SwitchCosAppTypePriority
+#       syntax: Integer32
+#     hpSwitchCosAppTypeDSCPPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.6
+#       name: hp.SwitchCosAppTypeDSCPPolicy
+#       syntax: Integer32
+#     hpSwitchCosAppTypeResolvedPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.7
+#       name: hp.SwitchCosAppTypeResolvedPriority
+#       syntax: Integer32
+#     hpSwitchCosAppTypeApplyPolicy:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.8
+#       name: hp.SwitchCosAppTypeApplyPolicy
+#       syntax: EnumInteger
+#     hpSwitchCosAppTypeMaxSrcPort:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.10
+#       name: hp.SwitchCosAppTypeMaxSrcPort
+#       syntax: Integer32
+#     hpSwitchCosAppTypeMaxDestPort:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.11
+#       name: hp.SwitchCosAppTypeMaxDestPort
+#       syntax: Integer32
+#     hpSwitchCosAppTypeIpPacketType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.7.1.12
+#       name: hp.SwitchCosAppTypeIpPacketType
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchQueueWatchEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchQueueWatchEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.10.1.1
+#       name: hp.SwitchQueueWatchPort
+#       syntax: Integer32
+#   discovery_attribute: hpSwitchQueueWatchState
+#   attributes:
+#     hpSwitchQueueWatchState:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.17.10.1.2
+#       name: hp.SwitchQueueWatchState
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchMeshConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchMeshConfig
+#   discovery_attribute: hpSwitchMeshMulticastAgingMode
+#   attributes:
+#     hpSwitchMeshMulticastAgingMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.18.1
+#       name: hp.SwitchMeshMulticastAgingMode
+#       syntax: EnumInteger
+#     hpSwitchMeshBackwardCompatibility:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.18.2
+#       name: hp.SwitchMeshBackwardCompatibility
+#       syntax: EnumInteger
+#     hpSwitchMeshConfiguredId:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.18.3
+#       name: hp.SwitchMeshConfiguredId
+#       syntax: IntegerAsID
+#     hpSwitchMeshActualId:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.18.4
+#       name: hp.SwitchMeshActualId
+#       syntax: IntegerAsID
+
+# CONFIG-MIB::hpSwitchPortIsolationConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchPortIsolationConfig
+#   discovery_attribute: hpSwitchPortIsolationMode
+#   attributes:
+#     hpSwitchPortIsolationMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.19.1
+#       name: hp.SwitchPortIsolationMode
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchPortIsolationConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchPortIsolationConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.19.2.1.1
+#       name: hp.SwitchPortIsolationPort
+#       syntax: Integer32
+#   discovery_attribute: hpSwitchPortIsolationPortMode
+#   attributes:
+#     hpSwitchPortIsolationPortMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.19.2.1.2
+#       name: hp.SwitchPortIsolationPortMode
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchSshConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchSshConfig
+#   discovery_attribute: hpSwitchSshAdminStatus
+#   attributes:
+#     hpSwitchSshAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.20.1
+#       name: hp.SwitchSshAdminStatus
+#       syntax: EnumInteger
+#     hpSwitchSshVersion:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.20.2
+#       name: hp.SwitchSshVersion
+#       syntax: EnumInteger
+#     hpSwitchSshTimeout:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.20.3
+#       name: hp.SwitchSshTimeout
+#       syntax: TicksSec
+#     hpSwitchSshPortNumber:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.20.4
+#       name: hp.SwitchSshPortNumber
+#       syntax: Integer32
+#     hpSwitchSshServerKeySize:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.20.5
+#       name: hp.SwitchSshServerKeySize
+#       syntax: EnumInteger
+#     hpSwitchSshFileServerAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.20.6
+#       name: hp.SwitchSshFileServerAdminStatus
+#       syntax: EnumInteger
+#     hpSwitchSshIpVersion:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.20.7
+#       name: hp.SwitchSshIpVersion
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchPendingConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchPendingConfig
+#   discovery_attribute: hpSwitchPendingConfigControl
+#   attributes:
+#     hpSwitchPendingConfigControl:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.21.1
+#       name: hp.SwitchPendingConfigControl
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchBWMinEgressPortConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchBWMinEgressPortConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.22.1.1.1
+#       name: hp.SwitchBWMinEgressPortIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchBWMinEgressPortPrctLowPriority
+#   attributes:
+#     hpSwitchBWMinEgressPortPrctLowPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.22.1.1.2
+#       name: hp.SwitchBWMinEgressPortPrctLowPriority
+#       syntax: Integer32
+#     hpSwitchBWMinEgressPortPrctNormalPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.22.1.1.3
+#       name: hp.SwitchBWMinEgressPortPrctNormalPriority
+#       syntax: Integer32
+#     hpSwitchBWMinEgressPortPrctMedPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.22.1.1.4
+#       name: hp.SwitchBWMinEgressPortPrctMedPriority
+#       syntax: Integer32
+#     hpSwitchBWMinEgressPortPrctHighPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.22.1.1.5
+#       name: hp.SwitchBWMinEgressPortPrctHighPriority
+#       syntax: Integer32
+
+# CONFIG-MIB::hpSwitchRateLimitPortConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchRateLimitPortConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.23.1.1.1
+#       name: hp.SwitchRateLimitPortIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchRateLimitPortControlMode
+#   attributes:
+#     hpSwitchRateLimitPortControlMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.23.1.1.2
+#       name: hp.SwitchRateLimitPortControlMode
+#       syntax: EnumInteger
+#     hpSwitchRateLimitPortSingleControlPrct:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.23.1.1.3
+#       name: hp.SwitchRateLimitPortSingleControlPrct
+#       syntax: Integer32
+#     hpSwitchRateLimitPortPrctLowPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.23.1.1.4
+#       name: hp.SwitchRateLimitPortPrctLowPriority
+#       syntax: Integer32
+#     hpSwitchRateLimitPortPrctNormalPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.23.1.1.5
+#       name: hp.SwitchRateLimitPortPrctNormalPriority
+#       syntax: Integer32
+#     hpSwitchRateLimitPortPrctMedPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.23.1.1.6
+#       name: hp.SwitchRateLimitPortPrctMedPriority
+#       syntax: Integer32
+#     hpSwitchRateLimitPortPrctHighPriority:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.23.1.1.7
+#       name: hp.SwitchRateLimitPortPrctHighPriority
+#       syntax: Integer32
+
+# CONFIG-MIB::hpSwitchQosPassThroughMode:
+#   mib: CONFIG-MIB
+#   object: hpSwitchQosPassThroughMode
+#   discovery_attribute: hpSwitchQosPassThroughModeConfig
+#   attributes:
+#     hpSwitchQosPassThroughModeConfig:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.24.1
+#       name: hp.SwitchQosPassThroughModeConfig
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchReboot:
+#   mib: CONFIG-MIB
+#   object: hpSwitchReboot
+#   discovery_attribute: hpSwitchRebootConfig
+#   attributes:
+#     hpSwitchRebootConfig:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.25.1
+#       name: hp.SwitchRebootConfig
+#       syntax: EnumInteger
+#     hpSwitchRebootFastBoot:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.25.2
+#       name: hp.SwitchRebootFastBoot
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchProtectedPortsConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchProtectedPortsConfig
+#   discovery_attribute: hpSwitchProtectedPortsMask
+#   attributes:
+#     hpSwitchProtectedPortsMask:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.26.1
+#       name: hp.SwitchProtectedPortsMask
+#       syntax: OctetString
+
+# CONFIG-MIB::hpSwitchLACPConfig:
+#   mib: CONFIG-MIB
+#   object: hpSwitchLACPConfig
+#   discovery_attribute: hpSwitchLACPAllPortsStatus
+#   attributes:
+#     hpSwitchLACPAllPortsStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.28.1
+#       name: hp.SwitchLACPAllPortsStatus
+#       syntax: EnumInteger
+
+# CONFIG-MIB::hpSwitchDSCPRateLimitConfigEntry:
+#   mib: CONFIG-MIB
+#   object: hpSwitchDSCPRateLimitConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.31.1.1.1
+#       name: hp.SwitchDSCPRateLimitIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpSwitchDSCPRateLimitKbps
+#   attributes:
+#     hpSwitchDSCPRateLimitKbps:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.31.1.1.2
+#       name: hp.SwitchDSCPRateLimitKbps
+#       syntax: BandwidthKBits
+#     hpSwitchDSCPRateLimitPorts:
+#       oid: .1.3.6.1.4.1.11.2.14.11.5.1.7.1.31.1.1.3
+#       name: hp.SwitchDSCPRateLimitPorts
+#       syntax: OctetString # PortList

@@ -1,0 +1,7 @@
+test:
+  object_groups:
+    - test
+
+all:
+  object_groups:
+    - all

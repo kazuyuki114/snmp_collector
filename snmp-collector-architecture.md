@@ -455,9 +455,20 @@ transport/elasticsearch/
 **`transport/file/`** - File/Stdout Output
 ```go
 transport/file/
-├── writer.go            # File writer
-└── rotate.go            # Log rotation
+├── writer.go            # Single-destination file/stdout writer
+├── split.go             # Split writer: metrics → file A, traps → file B
+└── rotate.go            # Size-based file rotation (io.WriteCloser)
 ```
+
+Features:
+- **WriterTransport**: Simple single-destination writer (default: stdout)
+- **SplitWriterTransport**: Routes SNMP poll metrics and trap events to separate files
+  - Zero-alloc routing via `bytes.Contains` marker detection (`"trap_info"`)
+  - Separate mutexes per destination for concurrent writes without cross-path contention
+- **RotatingFile**: Size-based file rotation with configurable backup retention
+  - Numbered backup scheme: `metrics.json` → `metrics.json.1` → `metrics.json.2`
+  - Automatic parent directory creation
+  - Satisfies `io.WriteCloser` — composable with any transport
 
 ### Data Models
 
@@ -1231,6 +1242,13 @@ The `syntax` field specifies how raw SNMP values are interpreted. Supports exten
 # Output Settings
 -format=json  # Currently only json implemented
 -transport=kafka  # kafka, file
+
+# File Transport Settings
+-transport.file.split=false                # Split output: metrics and traps to separate files
+-transport.file.metrics=snmp_metrics.json   # Output file for SNMP poll metrics (when split)
+-transport.file.traps=snmp_traps.json       # Output file for SNMP trap events (when split)
+-transport.file.max.bytes=0                 # Max file size before rotation (0=disabled)
+-transport.file.max.backups=5               # Rotated backup files to keep (0=unlimited)
 
 # Kafka Settings
 -transport.kafka.brokers=localhost:9092

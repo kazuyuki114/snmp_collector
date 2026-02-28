@@ -77,7 +77,28 @@ type Config struct {
 	PrettyPrint bool
 
 	// TransportWriter is the io.Writer for file transport. nil = os.Stdout.
+	// Ignored when SplitFile is true.
 	TransportWriter io.Writer
+
+	// SplitFile enables the split-file transport: SNMP poll metrics go to
+	// MetricFilePath and traps go to TrapFilePath.
+	SplitFile bool
+
+	// MetricFilePath is the output file for SNMP poll metrics.
+	// Required when SplitFile is true.
+	MetricFilePath string
+
+	// TrapFilePath is the output file for SNMP trap events.
+	// Required when SplitFile is true.
+	TrapFilePath string
+
+	// FileMaxBytes triggers file rotation when the active file exceeds this
+	// size. Zero disables rotation. Only used when SplitFile is true.
+	FileMaxBytes int64
+
+	// FileMaxBackups is the number of rotated files to keep per output file.
+	// Zero keeps all. Only used when SplitFile is true.
+	FileMaxBackups int
 }
 
 func (c *Config) withDefaults() {
@@ -173,9 +194,17 @@ func (a *App) Start(ctx context.Context) error {
 	a.formattedCh = make(chan []byte, a.cfg.BufferSize)
 
 	// ── 3. Build pipeline components (reverse order: transport → decoder) ──
-	a.transport = filetransport.New(filetransport.Config{
-		Writer: a.cfg.TransportWriter,
-	}, a.logger)
+	if a.cfg.SplitFile {
+		transport, err := a.buildSplitTransport()
+		if err != nil {
+			return fmt.Errorf("app: build split transport: %w", err)
+		}
+		a.transport = transport
+	} else {
+		a.transport = filetransport.New(filetransport.Config{
+			Writer: a.cfg.TransportWriter,
+		}, a.logger)
+	}
 
 	a.formatter = jsonformat.New(jsonformat.Config{
 		PrettyPrint: a.cfg.PrettyPrint,
@@ -467,6 +496,41 @@ func (a *App) startTransportStage(_ context.Context) {
 // ─────────────────────────────────────────────────────────────────────────────
 // Utilities
 // ─────────────────────────────────────────────────────────────────────────────
+
+// buildSplitTransport creates a SplitWriterTransport backed by RotatingFile
+// instances for metrics and traps.
+func (a *App) buildSplitTransport() (filetransport.Transport, error) {
+	mrf, err := filetransport.NewRotatingFile(filetransport.RotateConfig{
+		FilePath:   a.cfg.MetricFilePath,
+		MaxBytes:   a.cfg.FileMaxBytes,
+		MaxBackups: a.cfg.FileMaxBackups,
+	}, a.logger)
+	if err != nil {
+		return nil, fmt.Errorf("metric file: %w", err)
+	}
+
+	trf, err := filetransport.NewRotatingFile(filetransport.RotateConfig{
+		FilePath:   a.cfg.TrapFilePath,
+		MaxBytes:   a.cfg.FileMaxBytes,
+		MaxBackups: a.cfg.FileMaxBackups,
+	}, a.logger)
+	if err != nil {
+		_ = mrf.Close()
+		return nil, fmt.Errorf("trap file: %w", err)
+	}
+
+	a.logger.Info("app: split file transport configured",
+		"metric_file", a.cfg.MetricFilePath,
+		"trap_file", a.cfg.TrapFilePath,
+		"max_bytes", a.cfg.FileMaxBytes,
+		"max_backups", a.cfg.FileMaxBackups,
+	)
+
+	return filetransport.NewSplit(filetransport.SplitConfig{
+		MetricWriter: mrf,
+		TrapWriter:   trf,
+	}, a.logger), nil
+}
 
 type noopWriter struct{}
 

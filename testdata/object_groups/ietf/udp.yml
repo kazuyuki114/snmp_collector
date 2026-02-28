@@ -1,0 +1,4 @@
+ietf_udp:
+  objects:
+    - UDP-MIB::udp
+    - UDPLITE-MIB::udplite

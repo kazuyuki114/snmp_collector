@@ -1,0 +1,288 @@
+SONET-MIB::sonetMedium:
+  mib: SONET-MIB
+  object: sonetMedium
+  discovery_attribute: sonetSESthresholdSet
+  attributes:
+    sonetSESthresholdSet:
+      oid: .1.3.6.1.2.1.10.39.1.1.2
+      name: ietf.sonetSESthresholdSet
+      syntax: EnumInteger
+
+SONET-MIB::sonetMediumEntry:
+  mib: SONET-MIB
+  object: sonetMediumEntry
+  index:
+    - type: Integer
+      oid: .1.3.6.1.2.1.2.2.1.1
+      name: netif # ifIndex
+      syntax: InterfaceIndex
+  discovery_attribute: sonetMediumTimeElapsed
+  attributes:
+    sonetMediumType:
+      oid: .1.3.6.1.2.1.10.39.1.1.1.1.1
+      name: ietf.sonetMediumType
+      syntax: EnumInteger
+    sonetMediumTimeElapsed:
+      oid: .1.3.6.1.2.1.10.39.1.1.1.1.2
+      name: ietf.sonetMediumTimeElapsed
+      syntax: TicksSec
+      metric: counter
+    sonetMediumValidIntervals:
+      oid: .1.3.6.1.2.1.10.39.1.1.1.1.3
+      name: ietf.sonetMediumValidIntervals
+      syntax: Integer32
+    sonetMediumLineCoding:
+      oid: .1.3.6.1.2.1.10.39.1.1.1.1.4
+      name: ietf.sonetMediumLineCoding
+      syntax: EnumInteger
+    sonetMediumLineType:
+      oid: .1.3.6.1.2.1.10.39.1.1.1.1.5
+      name: ietf.sonetMediumLineType
+      syntax: EnumInteger
+    sonetMediumCircuitIdentifier:
+      oid: .1.3.6.1.2.1.10.39.1.1.1.1.6
+      name: ietf.sonetMediumCircuitIdentifier
+      syntax: DisplayString
+    sonetMediumInvalidIntervals:
+      oid: .1.3.6.1.2.1.10.39.1.1.1.1.7
+      name: ietf.sonetMediumInvalidIntervals
+      syntax: Integer32
+      metric: counter
+    sonetMediumLoopbackConfig:
+      oid: .1.3.6.1.2.1.10.39.1.1.1.1.8
+      name: ietf.sonetMediumLoopbackConfig
+      syntax: EnumBitmap
+    # Additional Attributes as Tags
+    ifDescr:
+      oid: .1.3.6.1.2.1.2.2.1.2
+      tag: true
+      name: netif.descr
+      syntax: DisplayString
+    ifType:
+      oid: .1.3.6.1.2.1.2.2.1.3
+      tag: true
+      name: netif.type
+      syntax: IANAifType
+    ifName:
+      oid: .1.3.6.1.2.1.31.1.1.1.1
+      tag: true
+      name: netif.name
+      syntax: DisplayString
+    ifAlias:
+      oid: .1.3.6.1.2.1.31.1.1.1.18
+      tag: true
+      name: netif.alias
+      syntax: DisplayString
+
+SONET-MIB::sonetSectionCurrentEntry:
+  mib: SONET-MIB
+  object: sonetSectionCurrentEntry
+  augments: SONET-MIB::sonetMediumEntry
+  discovery_attribute: sonetSectionCurrentESs
+  attributes:
+    sonetSectionCurrentStatus:
+      oid: .1.3.6.1.2.1.10.39.1.2.1.1.1
+      name: ietf.sonetSectionCurrentStatus
+      syntax: EnumBitmap
+    sonetSectionCurrentESs:
+      oid: .1.3.6.1.2.1.10.39.1.2.1.1.2
+      name: ietf.sonetSectionCurrentESs
+      syntax: Gauge32
+      metric: gauge
+    sonetSectionCurrentSESs:
+      oid: .1.3.6.1.2.1.10.39.1.2.1.1.3
+      name: ietf.sonetSectionCurrentSESs
+      syntax: Gauge32
+      metric: gauge
+    sonetSectionCurrentSEFSs:
+      oid: .1.3.6.1.2.1.10.39.1.2.1.1.4
+      name: ietf.sonetSectionCurrentSEFSs
+      syntax: Gauge32
+      metric: gauge
+    sonetSectionCurrentCVs:
+      oid: .1.3.6.1.2.1.10.39.1.2.1.1.5
+      name: ietf.sonetSectionCurrentCVs
+      syntax: Gauge32
+      metric: gauge
+
+SONET-MIB::sonetLineCurrentEntry:
+  mib: SONET-MIB
+  object: sonetLineCurrentEntry
+  augments: SONET-MIB::sonetMediumEntry
+  discovery_attribute: sonetLineCurrentESs
+  attributes:
+    sonetLineCurrentStatus:
+      oid: .1.3.6.1.2.1.10.39.1.3.1.1.1
+      name: ietf.sonetLineCurrentStatus
+      syntax: EnumBitmap
+    sonetLineCurrentESs:
+      oid: .1.3.6.1.2.1.10.39.1.3.1.1.2
+      name: ietf.sonetLineCurrentESs
+      syntax: Gauge32
+      metric: gauge
+    sonetLineCurrentSESs:
+      oid: .1.3.6.1.2.1.10.39.1.3.1.1.3
+      name: ietf.sonetLineCurrentSESs
+      syntax: Gauge32
+      metric: gauge
+    sonetLineCurrentCVs:
+      oid: .1.3.6.1.2.1.10.39.1.3.1.1.4
+      name: ietf.sonetLineCurrentCVs
+      syntax: Gauge32
+      metric: gauge
+    sonetLineCurrentUASs:
+      oid: .1.3.6.1.2.1.10.39.1.3.1.1.5
+      name: ietf.sonetLineCurrentUASs
+      syntax: Gauge32
+      metric: gauge
+
+SONET-MIB::sonetFarEndLineCurrentEntry:
+  mib: SONET-MIB
+  object: sonetFarEndLineCurrentEntry
+  augments: SONET-MIB::sonetMediumEntry
+  discovery_attribute: sonetFarEndLineCurrentSESs
+  attributes:
+    sonetFarEndLineCurrentESs:
+      oid: .1.3.6.1.2.1.10.39.1.4.1.1.1
+      name: ietf.sonetFarEndLineCurrentESs
+      syntax: Gauge32
+      metric: gauge
+    sonetFarEndLineCurrentSESs:
+      oid: .1.3.6.1.2.1.10.39.1.4.1.1.2
+      name: ietf.sonetFarEndLineCurrentSESs
+      syntax: Gauge32
+      metric: gauge
+    sonetFarEndLineCurrentCVs:
+      oid: .1.3.6.1.2.1.10.39.1.4.1.1.3
+      name: ietf.sonetFarEndLineCurrentCVs
+      syntax: Gauge32
+      metric: gauge
+    sonetFarEndLineCurrentUASs:
+      oid: .1.3.6.1.2.1.10.39.1.4.1.1.4
+      name: ietf.sonetFarEndLineCurrentUASs
+      syntax: Gauge32
+      metric: gauge
+
+SONET-MIB::sonetPathCurrentEntry:
+  mib: SONET-MIB
+  object: sonetPathCurrentEntry
+  augments: SONET-MIB::sonetMediumEntry
+  discovery_attribute: sonetPathCurrentStatus
+  attributes:
+    sonetPathCurrentWidth:
+      oid: .1.3.6.1.2.1.10.39.2.1.1.1.1
+      name: ietf.sonetPathCurrentWidth
+      syntax: EnumInteger
+    sonetPathCurrentStatus:
+      oid: .1.3.6.1.2.1.10.39.2.1.1.1.2
+      name: ietf.sonetPathCurrentStatus
+      syntax: EnumBitmap
+    sonetPathCurrentESs:
+      oid: .1.3.6.1.2.1.10.39.2.1.1.1.3
+      name: ietf.sonetPathCurrentESs
+      syntax: Gauge32
+      metric: gauge
+    sonetPathCurrentSESs:
+      oid: .1.3.6.1.2.1.10.39.2.1.1.1.4
+      name: ietf.sonetPathCurrentSESs
+      syntax: Gauge32
+      metric: gauge
+    sonetPathCurrentCVs:
+      oid: .1.3.6.1.2.1.10.39.2.1.1.1.5
+      name: ietf.sonetPathCurrentCVs
+      syntax: Gauge32
+      metric: gauge
+    sonetPathCurrentUASs:
+      oid: .1.3.6.1.2.1.10.39.2.1.1.1.6
+      name: ietf.sonetPathCurrentUASs
+      syntax: Gauge32
+      metric: gauge
+
+SONET-MIB::sonetFarEndPathCurrentEntry:
+  mib: SONET-MIB
+  object: sonetFarEndPathCurrentEntry
+  augments: SONET-MIB::sonetMediumEntry
+  discovery_attribute: sonetFarEndPathCurrentSESs
+  attributes:
+    sonetFarEndPathCurrentESs:
+      oid: .1.3.6.1.2.1.10.39.2.2.1.1.1
+      name: ietf.sonetFarEndPathCurrentESs
+      syntax: Gauge32
+      metric: gauge
+    sonetFarEndPathCurrentSESs:
+      oid: .1.3.6.1.2.1.10.39.2.2.1.1.2
+      name: ietf.sonetFarEndPathCurrentSESs
+      syntax: Gauge32
+      metric: gauge
+    sonetFarEndPathCurrentCVs:
+      oid: .1.3.6.1.2.1.10.39.2.2.1.1.3
+      name: ietf.sonetFarEndPathCurrentCVs
+      syntax: Gauge32
+      metric: gauge
+    sonetFarEndPathCurrentUASs:
+      oid: .1.3.6.1.2.1.10.39.2.2.1.1.4
+      name: ietf.sonetFarEndPathCurrentUASs
+      syntax: Gauge32
+      metric: gauge
+
+SONET-MIB::sonetVTCurrentEntry:
+  mib: SONET-MIB
+  object: sonetVTCurrentEntry
+  augments: SONET-MIB::sonetMediumEntry
+  discovery_attribute: sonetVTCurrentStatus
+  attributes:
+    sonetVTCurrentWidth:
+      oid: .1.3.6.1.2.1.10.39.3.1.1.1.1
+      name: ietf.sonetVTCurrentWidth
+      syntax: EnumInteger
+    sonetVTCurrentStatus:
+      oid: .1.3.6.1.2.1.10.39.3.1.1.1.2
+      name: ietf.sonetVTCurrentStatus
+      syntax: EnumBitmap
+    sonetVTCurrentESs:
+      oid: .1.3.6.1.2.1.10.39.3.1.1.1.3
+      name: ietf.sonetVTCurrentESs
+      syntax: Gauge32
+      metric: gauge
+    sonetVTCurrentSESs:
+      oid: .1.3.6.1.2.1.10.39.3.1.1.1.4
+      name: ietf.sonetVTCurrentSESs
+      syntax: Gauge32
+      metric: gauge
+    sonetVTCurrentCVs:
+      oid: .1.3.6.1.2.1.10.39.3.1.1.1.5
+      name: ietf.sonetVTCurrentCVs
+      syntax: Gauge32
+      metric: gauge
+    sonetVTCurrentUASs:
+      oid: .1.3.6.1.2.1.10.39.3.1.1.1.6
+      name: ietf.sonetVTCurrentUASs
+      syntax: Gauge32
+      metric: gauge
+
+SONET-MIB::sonetFarEndVTCurrentEntry:
+  mib: SONET-MIB
+  object: sonetFarEndVTCurrentEntry
+  augments: SONET-MIB::sonetMediumEntry
+  discovery_attribute: sonetFarEndVTCurrentSESs
+  attributes:
+    sonetFarEndVTCurrentESs:
+      oid: .1.3.6.1.2.1.10.39.3.2.1.1.1
+      name: ietf.sonetFarEndVTCurrentESs
+      syntax: Gauge32
+      metric: gauge
+    sonetFarEndVTCurrentSESs:
+      oid: .1.3.6.1.2.1.10.39.3.2.1.1.2
+      name: ietf.sonetFarEndVTCurrentSESs
+      syntax: Gauge32
+      metric: gauge
+    sonetFarEndVTCurrentCVs:
+      oid: .1.3.6.1.2.1.10.39.3.2.1.1.3
+      name: ietf.sonetFarEndVTCurrentCVs
+      syntax: Gauge32
+      metric: gauge
+    sonetFarEndVTCurrentUASs:
+      oid: .1.3.6.1.2.1.10.39.3.2.1.1.4
+      name: ietf.sonetFarEndVTCurrentUASs
+      syntax: Gauge32
+      metric: gauge

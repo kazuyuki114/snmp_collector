@@ -75,6 +75,38 @@ myswitch.lab:
 
 Optional fields fall back to hard-coded defaults: `port=161`, `poll_interval=60`, `timeout=3000`, `retries=2`, `version=2c`, `max_concurrent_polls=4`.
 
+### Run (split-file transport)
+
+Write SNMP poll metrics and trap events to separate files with automatic rotation:
+
+```bash
+./snmpcollector \
+  -config.devices=./testdata/devices \
+  -config.device.groups=./testdata/device_groups \
+  -config.object.groups=./testdata/object_groups \
+  -config.objects=./testdata/objects \
+  -config.enums=./testdata/enums \
+  -log.level=debug \
+  -log.fmt=text \
+  -format.pretty \
+  -poller.workers=2 \
+  -transport.file.split \
+  -transport.file.metrics=/tmp/snmp_metrics.json \
+  -transport.file.traps=/tmp/snmp_traps.json \
+  -transport.file.max.bytes=104857600 \
+  -transport.file.max.backups=5 \
+  -trap.enabled \
+  -trap.listen=0.0.0.0:1620
+```
+
+When `-transport.file.split` is enabled:
+- Poll metrics (containing `"metrics"`) are written to `-transport.file.metrics`
+- Trap events (containing `"trap_info"`) are written to `-transport.file.traps`
+- Files rotate automatically when they reach `-transport.file.max.bytes`
+- Up to `-transport.file.max.backups` rotated files are kept (e.g. `snmp_metrics.json.1`, `.2`, ...)
+
+Without `-transport.file.split`, all output goes to stdout (default behaviour).
+
 ### Sending test traps
 
 Install `snmp` tools if not already available: `sudo apt install snmp`
@@ -120,6 +152,11 @@ snmptrap -v 1 -c public 127.0.0.1:1620 \
 | `-processor.counter.delta` | `true` | Enable counter delta computation |
 | `-snmp.pool.max.idle` | `2` | Max idle connections per device |
 | `-snmp.pool.idle.timeout` | `30` | Idle connection timeout (seconds) |
+| `-transport.file.split` | `false` | Split output: metrics and traps to separate files |
+| `-transport.file.metrics` | `snmp_metrics.json` | Output file for SNMP poll metrics (split mode) |
+| `-transport.file.traps` | `snmp_traps.json` | Output file for SNMP trap events (split mode) |
+| `-transport.file.max.bytes` | `0` | Max file size before rotation, bytes (0 = disabled) |
+| `-transport.file.max.backups` | `5` | Rotated backup files to keep (0 = unlimited) |
 | `-config.devices` | env / `/etc/snmp_collector/snmp/devices` | Devices directory |
 | `-config.device.groups` | env / `/etc/snmp_collector/snmp/device_groups` | Device groups directory |
 | `-config.object.groups` | env / `/etc/snmp_collector/snmp/object_groups` | Object groups directory |

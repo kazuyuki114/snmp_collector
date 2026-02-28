@@ -1,0 +1,411 @@
+# HP-ICF-BASIC::hpicfBasic:
+#   mib: HP-ICF-BASIC
+#   object: hpicfBasic
+#   discovery_attribute: hpicfReset
+#   attributes:
+#     hpicfTelnetEnable:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.3
+#       name: hp.icfTelnetEnable
+#       syntax: EnumInteger
+#     hpicfWebAgentEnable:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.6
+#       name: hp.icfWebAgentEnable
+#       syntax: EnumInteger
+#     hpicfBannerStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.13
+#       name: hp.icfBannerStatus
+#       syntax: EnumInteger
+#     hpicfResetDefault:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.16
+#       name: hp.icfResetDefault
+#       syntax: EnumInteger
+#     hpicfTelnet6Enable:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.17
+#       name: hp.icfTelnet6Enable
+#       syntax: EnumInteger
+
+# HP-ICF-BASIC::hpicfSelfTestResult:
+#   mib: HP-ICF-BASIC
+#   object: hpicfSelfTestResult
+#   discovery_attribute: hpicfSelfTestResultCode
+#   attributes:
+#     hpicfSelfTestResultCode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.5.1
+#       name: hp.icfSelfTestResultCode
+#       syntax: EnumInteger
+#     hpicfSelfTestResultText:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.5.2
+#       name: hp.icfSelfTestResultText
+#       syntax: DisplayString
+#     hpicfSelfTestResultTime:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.5.3
+#       name: hp.icfSelfTestResultTime
+#       syntax: TimeStamp
+
+# HP-ICF-BASIC::hpicfIpConfigEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfIpConfigEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.2.1.2.2.1.1
+#       name: netif
+#       syntax: InterfaceIndex
+#   discovery_attribute: hpicfIpConfigAddrMask
+#   attributes:
+#     hpicfIpConfigAddress:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.1.1.1
+#       name: hp.icfIpConfigAddress
+#       syntax: IpAddressNoSuffix
+#     hpicfIpConfigAddrMask:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.1.1.2
+#       name: hp.icfIpConfigAddrMask
+#       syntax: IpAddressNoSuffix
+#     hpicfIpConfigDefaultRouter:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.1.1.3
+#       name: hp.icfIpConfigDefaultRouter
+#       syntax: IpAddressNoSuffix
+#     hpicfIpConfigPingRouter:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.1.1.4
+#       name: hp.icfIpConfigPingRouter
+#       syntax: TruthValue
+#     hpicfIpConfigMtu:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.1.1.5
+#       name: hp.icfIpConfigMtu
+#       syntax: BytesB
+#     hpicfIpConfigAdminStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.1.1.6
+#       name: hp.icfIpConfigAdminStatus
+#       syntax: EnumInteger
+#     hpicfIpConfigProxyArp:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.1.1.7
+#       name: hp.icfIpConfigProxyArp
+#       syntax: EnumInteger
+#     hpicfIpConfigLocalProxyArp:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.1.1.8
+#       name: hp.icfIpConfigLocalProxyArp
+#       syntax: EnumInteger
+#     # Additional Attributes as Tags
+#     ifDescr:
+#       oid: .1.3.6.1.2.1.2.2.1.2
+#       tag: true
+#       name: netif.descr
+#       syntax: DisplayString
+#     ifType:
+#       oid: .1.3.6.1.2.1.2.2.1.3
+#       tag: true
+#       name: netif.type
+#       syntax: IANAifType
+#     ifName:
+#       oid: .1.3.6.1.2.1.31.1.1.1.1
+#       tag: true
+#       name: netif.name
+#       syntax: DisplayString
+#     ifAlias:
+#       oid: .1.3.6.1.2.1.31.1.1.1.18
+#       tag: true
+#       name: netif.alias
+#       syntax: DisplayString
+
+# HP-ICF-BASIC::hpicfIpAddrEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfIpAddrEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.2.1.2.2.1.1
+#       name: netif
+#       syntax: InterfaceIndex
+#     - type: OctetString # IpAddress
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.2.1.1
+#       name: hp.icfIpAddrAddr
+#       syntax: IpAddressNoSuffix
+#   discovery_attribute: hpicfIpAddrMask
+#   attributes:
+#     hpicfIpAddrMask:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.8.2.1.2
+#       name: hp.icfIpAddrMask
+#       syntax: IpAddressNoSuffix
+
+# HP-ICF-BASIC::hpicfFixedTrapEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfFixedTrapEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.1.1.1
+#       name: hp.icfFixedTrapID
+#       syntax: ObjectIdentifier
+#   discovery_attribute: hpicfFixedTrapEventIndex
+#   attributes:
+#     hpicfFixedTrapEventIndex:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.1.1.2
+#       name: hp.icfFixedTrapEventIndex
+#       syntax: IntegerAsID
+
+# HP-ICF-BASIC::hpicfTrapDestEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfTrapDestEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.2.1.1
+#       name: hp.icfTrapDestIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpicfTrapDestVersion
+#   attributes:
+#     hpicfTrapDestVersion:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.2.1.2
+#       name: hp.icfTrapDestVersion
+#       syntax: EnumInteger
+#     hpicfTrapDestCommunity:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.2.1.3
+#       name: hp.icfTrapDestCommunity
+#       syntax: OctetString
+#     hpicfTrapDestTDomain:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.2.1.4
+#       name: hp.icfTrapDestTDomain
+#       syntax: TDomain
+#     hpicfTrapDestTAddress:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.2.1.5
+#       name: hp.icfTrapDestTAddress
+#       syntax: TAddress
+#     hpicfTrapDestFilter:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.2.1.6
+#       name: hp.icfTrapDestFilter
+#       syntax: Integer32
+#     hpicfTrapDestNotifyType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.2.1.8
+#       name: hp.icfTrapDestNotifyType
+#       syntax: EnumInteger
+#     hpicfTrapDestRetries:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.2.1.9
+#       name: hp.icfTrapDestRetries
+#       syntax: Integer32
+#     hpicfTrapDestTimeout:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.10.2.1.10
+#       name: hp.icfTrapDestTimeout
+#       syntax: TimeInterval
+
+# HP-ICF-BASIC::hpicfSnmpTargetAddrLogFilterEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfSnmpTargetAddrLogFilterEntry
+#   index:
+#     - type: OctetString
+#       oid: .1.3.6.1.6.3.12.1.2.1.1
+#       name: ietf.snmpTargetAddrName
+#       syntax: DisplayString
+#   discovery_attribute: hpicfSnmpTargetAddrLogFilter
+#   attributes:
+#     hpicfSnmpTargetAddrLogFilter:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.12.1.1.1
+#       name: hp.icfSnmpTargetAddrLogFilter
+#       syntax: Integer32
+#       metric: gauge
+
+# HP-ICF-BASIC::hpicfBanner:
+#   mib: HP-ICF-BASIC
+#   object: hpicfBanner
+#   discovery_attribute: hpicfBannerMOTD
+#   attributes:
+#     hpicfBannerMOTD:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.14.1
+#       name: hp.icfBannerMOTD
+#       syntax: OctetString
+#     hpicfExecBannerStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.14.2
+#       name: hp.icfExecBannerStatus
+#       syntax: EnumInteger
+#     hpicfBannerExec:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.14.3
+#       name: hp.icfBannerExec
+#       syntax: OctetString
+#     hpicfLastLoginBannerStatus:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.14.4
+#       name: hp.icfLastLoginBannerStatus
+#       syntax: EnumInteger
+#     hpicfBannerExec1:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.14.5
+#       name: hp.icfBannerExec1
+#       syntax: OctetString
+
+# HP-ICF-BASIC::hpicfBasicDNSConfig:
+#   mib: HP-ICF-BASIC
+#   object: hpicfBasicDNSConfig
+#   discovery_attribute: hpicfDNSDefaultDomainSuffix
+#   attributes:
+#     hpicfDNSDefaultDomainSuffix:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.15.1
+#       name: hp.icfDNSDefaultDomainSuffix
+#       syntax: DisplayString
+#     hpicfDNSDefaultDomainSuffixIsOobm:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.15.4
+#       name: hp.icfDNSDefaultDomainSuffixIsOobm
+#       syntax: DisplayString
+#     hpicfDNSConfigMode:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.15.5
+#       name: hp.icfDNSConfigMode
+#       syntax: EnumInteger
+
+# HP-ICF-BASIC::hpicfInetDNSNameServerEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfInetDNSNameServerEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.15.3.1.1
+#       name: hp.icfInetDNSNameServerAddrIndex
+#       syntax: IntegerAsID
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.15.3.1.2
+#       name: hp.icfInetDNSNameServerAddrType
+#       syntax: skip
+#     - type: OctetString
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.15.3.1.3
+#       name: hp.icfInetDNSNameServerAddress
+#       syntax: IpAddressNoSuffix # InetAddress
+#   discovery_attribute: hpicfInetDNSNameServerEntryStatus
+#   attributes:
+#     hpicfInetDNSNameServerEntryIsOobm:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.15.3.1.5
+#       name: hp.icfInetDNSNameServerEntryIsOobm
+#       syntax: TruthValue
+
+# HP-ICF-BASIC::hpicfDNSDomainSuffixEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfDNSDomainSuffixEntry
+#   index:
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.15.7.1.1
+#       name: hp.icfDNSDomainSuffixIndex
+#       syntax: IntegerAsID
+#   discovery_attribute: hpicfDNSDomainSuffix
+#   attributes:
+#     hpicfDNSDomainSuffix:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.15.7.1.2
+#       name: hp.icfDNSDomainSuffix
+#       syntax: DisplayString
+
+HP-ICF-BASIC::hpicfBasicLogFiltersEntry:
+  mib: HP-ICF-BASIC
+  object: hpicfBasicLogFiltersEntry
+  index:
+    - type: OctetString
+      oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.1.1.1
+      name: hp.icfBasicLogFilterName
+      syntax: DisplayString
+  discovery_attribute: hpicfBasicLogFilterEnable
+  attributes:
+    hpicfBasicLogFilterEnable:
+      oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.1.1.2
+      name: hp.icfBasicLogFilterEnable
+      syntax: EnumInteger
+    hpicfBasicLogFilterDropCounter:
+      oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.1.1.3
+      name: hp.icfBasicLogFilterDropCounter
+      syntax: Counter32
+      metric: counter
+
+# HP-ICF-BASIC::hpicfBasicLogSubFilterEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfBasicLogSubFilterEntry
+#   index:
+#     - type: OctetString
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.1.1.1
+#       name: hp.icfBasicLogFilterName
+#       syntax: DisplayString
+#     - type: Integer32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.2.1.1
+#       name: hp.icfBasicLogSubFilterSeqNum
+#       syntax: Integer32
+#   discovery_attribute: hpicfBasicLogSubFilterType
+#   attributes:
+#     hpicfBasicLogSubFilterType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.2.1.2
+#       name: hp.icfBasicLogSubFilterType
+#       syntax: EnumInteger
+#     hpicfBasicLogSubFilterSeverity:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.2.1.3
+#       name: hp.icfBasicLogSubFilterSeverity
+#       syntax: EnumInteger
+#     hpicfBasicLogSubFilterEventNum:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.2.1.4
+#       name: hp.icfBasicLogSubFilterEventNum
+#       syntax: Integer32
+#       metric: gauge
+#     hpicfBasicLogSubFilterRegExp:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.2.1.5
+#       name: hp.icfBasicLogSubFilterRegExp
+#       syntax: DisplayString
+#     hpicfBasicLogSubFilterAction:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.2.1.6
+#       name: hp.icfBasicLogSubFilterAction
+#       syntax: EnumInteger
+#     hpicfBasicLogSubFilterMatchCounter:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.2.1.7
+#       name: hp.icfBasicLogSubFilterMatchCounter
+#       syntax: Counter32
+#       metric: counter
+
+# HP-ICF-BASIC::hpicfBasicLogPerIpFilterEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfBasicLogPerIpFilterEntry
+#   index:
+#     - type: OctetString
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.1.1.1
+#       name: hp.icfBasicLogFilterName
+#       syntax: DisplayString
+#     - type: Unsigned32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.4.1.1
+#       name: hp.icfBasicLogPerIpIndex
+#       syntax: UnsignedAsID
+#   discovery_attribute: hpicfBasicLogPerIpFilterType
+#   attributes:
+#     hpicfBasicLogPerIpFilterType:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.4.1.2
+#       name: hp.icfBasicLogPerIpFilterType
+#       syntax: EnumInteger
+#     hpicfBasicLogPerIpFilterSeverity:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.4.1.3
+#       name: hp.icfBasicLogPerIpFilterSeverity
+#       syntax: EnumInteger
+#     hpicfBasicLogPerIpFilterEventList:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.4.1.4
+#       name: hp.icfBasicLogPerIpFilterEventList
+#       syntax: OctetString
+#     hpicfBasicLogPerIpFilterAction:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.4.1.5
+#       name: hp.icfBasicLogPerIpFilterAction
+#       syntax: EnumInteger
+#     hpicfBasicLogPerIpFilterSysModule:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.4.1.6
+#       name: hp.icfBasicLogPerIpFilterSysModule
+#       syntax: OctetString
+
+# HP-ICF-BASIC::hpicfperIploggingurlEntry:
+#   mib: HP-ICF-BASIC
+#   object: hpicfperIploggingurlEntry
+#   index:
+#     - type: Unsigned32
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.5.1.1
+#       name: hp.icfperIploggingurlIndex
+#       syntax: UnsignedAsID
+#   discovery_attribute: hpicfperIploggingurlUrl
+#   attributes:
+#     hpicfperIploggingurlUrl:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.5.1.2
+#       name: hp.icfperIploggingurlUrl
+#       syntax: OctetString
+#     hpicfperIploggingurlFilterName:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.23.5.1.3
+#       name: hp.icfperIploggingurlFilterName
+#       syntax: DisplayString
+
+# HP-ICF-BASIC::hpicfBasicWebMgmtObjects:
+#   mib: HP-ICF-BASIC
+#   object: hpicfBasicWebMgmtObjects
+#   discovery_attribute: hpicfBasicWebAgentIdleTime
+#   attributes:
+#     hpicfBasicWebAgentIdleTime:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.24.1
+#       name: hp.icfBasicWebAgentIdleTime
+#       syntax: TicksSec
+#     hpicfBasicWebAgentInterface:
+#       oid: .1.3.6.1.4.1.11.2.14.11.1.4.24.2
+#       name: hp.icfBasicWebAgentInterface
+#       syntax: EnumInteger

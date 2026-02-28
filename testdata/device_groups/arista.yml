@@ -1,0 +1,32 @@
+arista:
+  object_groups:
+    # standards-based
+    - ietf_system
+    - ietf_host
+    - ietf_netif_ethernet
+    - ietf_ip
+    - ietf_icmp
+    - ietf_tcp
+    - ietf_udp
+    - ietf_bgp
+    - ietf_isis
+    - ietf_ospf
+    - ietf_rip
+    - ietf_vrrp
+    - ietf_mpls
+    - ietf_snmp
+    - ietf_bridge
+    - ietf_p_bridge
+    - ietf_q_bridge
+    - ietf_rstp
+    - ieee_lag
+    - ieee_lldp
+    # vendor-specific
+    - arista_system
+    - arista_if
+    - arista_ip
+    - arista_qos
+    - arista_router
+    - arista_switch
+    - arista_vxlan
+    - arista_xgs

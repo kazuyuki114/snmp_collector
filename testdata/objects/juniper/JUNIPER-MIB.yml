@@ -1,0 +1,519 @@
+JUNIPER-MIB::jnxBoxAnatomy:
+  mib: JUNIPER-MIB
+  object: jnxBoxAnatomy
+  discovery_attribute: jnxBoxClass
+  attributes:
+    jnxBoxClass:
+      oid: .1.3.6.1.4.1.2636.3.1.1
+      tag: true
+      name: juniper.box.class
+      syntax: EnumObjectIdentifier
+    jnxBoxDescr:
+      oid: .1.3.6.1.4.1.2636.3.1.2
+      tag: true
+      name: juniper.box.descr
+      syntax: DisplayString
+    jnxBoxSerialNo:
+      oid: .1.3.6.1.4.1.2636.3.1.3
+      tag: true
+      name: juniper.box.serial_no
+      syntax: DisplayString
+    jnxBoxRevision:
+      oid: .1.3.6.1.4.1.2636.3.1.4
+      tag: true
+      name: juniper.box.revision
+      syntax: DisplayString
+    jnxBoxInstalled:
+      oid: .1.3.6.1.4.1.2636.3.1.5
+      name: juniper.box.installed
+      syntax: TimeStamp
+    jnxContentsLastChange:
+      oid: .1.3.6.1.4.1.2636.3.1.7
+      name: juniper.contents.last_chg
+      syntax: TimeStamp
+    jnxLEDLastChange:
+      oid: .1.3.6.1.4.1.2636.3.1.9
+      name: juniper.led.last_chg
+      syntax: TimeStamp
+    jnxFilledLastChange:
+      oid: .1.3.6.1.4.1.2636.3.1.11
+      name: juniper.filled.last_chg
+      syntax: TimeStamp
+    jnxBoxKernelMemoryUsedPercent:
+      oid: .1.3.6.1.4.1.2636.3.1.16
+      name: juniper.box.kernel.mem.used.pct
+      syntax: Percent100
+    jnxBoxSystemDomainType:
+      oid: .1.3.6.1.4.1.2636.3.1.17
+      name: juniper.box.system_domain_type
+      syntax: EnumInteger
+    jnxBoxPersonality:
+      oid: .1.3.6.1.4.1.2636.3.1.18
+      name: juniper.box.personality
+      syntax: EnumObjectIdentifier
+
+JUNIPER-MIB::jnxContainersEntry:
+  mib: JUNIPER-MIB
+  object: jnxContainersEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.4.1.2636.3.1.6.1.1
+      name: juniper.container.index
+      syntax: IntegerAsID
+  discovery_attribute: jnxContainersView
+  attributes:
+    jnxContainersView:
+      oid: .1.3.6.1.4.1.2636.3.1.6.1.2
+      name: juniper.container.view
+      syntax: Integer32
+    jnxContainersLevel:
+      oid: .1.3.6.1.4.1.2636.3.1.6.1.3
+      name: juniper.container.level
+      syntax: Integer32
+    jnxContainersWithin:
+      oid: .1.3.6.1.4.1.2636.3.1.6.1.4
+      name: juniper.container.within
+      syntax: Integer32
+    jnxContainersType:
+      oid: .1.3.6.1.4.1.2636.3.1.6.1.5
+      name: juniper.container.type
+      syntax: EnumObjectIdentifier
+    jnxContainersDescr:
+      oid: .1.3.6.1.4.1.2636.3.1.6.1.6
+      name: juniper.container.descr
+      syntax: DisplayString
+    jnxContainersCount:
+      oid: .1.3.6.1.4.1.2636.3.1.6.1.7
+      name: juniper.container.count
+      syntax: Integer32
+
+JUNIPER-MIB::jnxContentsEntry:
+  mib: JUNIPER-MIB
+  object: jnxContentsEntry
+  # index:
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.8.1.1
+  #     name: juniper.container.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.8.1.2
+  #     name: juniper.container.l1.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.8.1.3
+  #     name: juniper.container.l2.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.8.1.4
+  #     name: juniper.container.l3.index
+  #     syntax: IntegerAsID
+  augments: JUNIPER-MIB::jnxFilledEntry
+  discovery_attribute: jnxContentsType
+  attributes:
+    jnxContentsType:
+      oid: .1.3.6.1.4.1.2636.3.1.8.1.5
+      name: juniper.contents.type
+      syntax: EnumInteger
+    jnxContentsDescr:
+      oid: .1.3.6.1.4.1.2636.3.1.8.1.6
+      name: juniper.contents.descr
+      syntax: DisplayString
+    jnxContentsSerialNo:
+      oid: .1.3.6.1.4.1.2636.3.1.8.1.7
+      name: juniper.contents.serial_no
+      syntax: DisplayString
+    jnxContentsRevision:
+      oid: .1.3.6.1.4.1.2636.3.1.8.1.8
+      name: juniper.contents.revision
+      syntax: DisplayString
+    jnxContentsInstalled:
+      oid: .1.3.6.1.4.1.2636.3.1.8.1.9
+      name: juniper.contents.installed.sysuptime
+      syntax: TimeStamp
+    jnxContentsPartNo:
+      oid: .1.3.6.1.4.1.2636.3.1.8.1.10
+      name: juniper.contents.part_no
+      syntax: DisplayString
+    # jnxContentsChassisId:
+    #   oid: .1.3.6.1.4.1.2636.3.1.8.1.11
+    #   tag: true
+    #   name: juniper.chassis
+    #   syntax: EnumInteger
+    # jnxContentsChassisDescr:
+    #   oid: .1.3.6.1.4.1.2636.3.1.8.1.12
+    #   tag: true
+    #   name: juniper.chassis.descr
+    #   syntax: DisplayString
+    jnxContentsChassisCleiCode:
+      oid: .1.3.6.1.4.1.2636.3.1.8.1.13
+      name: juniper.chassis.clei.code
+      syntax: DisplayString
+    jnxContentsModel:
+      oid: .1.3.6.1.4.1.2636.3.1.8.1.14
+      name: juniper.contents.model.name
+      syntax: DisplayString
+
+JUNIPER-MIB::jnxLEDEntry:
+  mib: JUNIPER-MIB
+  object: jnxLEDEntry
+  index:
+    - type: Integer
+      oid: .1.3.6.1.4.1.2636.3.1.10.1.1
+      name: juniper.led.assoc_table
+      syntax: EnumInteger
+    - type: Integer32
+      oid: .1.3.6.1.4.1.2636.3.1.10.1.1
+      name: juniper.container.index
+      syntax: IntegerAsID
+    - type: Integer32
+      oid: .1.3.6.1.4.1.2636.3.1.10.1.2
+      name: juniper.container.l1.index
+      syntax: IntegerAsID
+    - type: Integer32
+      oid: .1.3.6.1.4.1.2636.3.1.10.1.3
+      name: juniper.container.l2.index
+      syntax: IntegerAsID
+    - type: Integer32
+      oid: .1.3.6.1.4.1.2636.3.1.10.1.4
+      name: juniper.container.l3.index
+      syntax: IntegerAsID
+  discovery_attribute: jnxLEDOriginator
+  attributes:
+    jnxLEDOriginator:
+      oid: .1.3.6.1.4.1.2636.3.1.10.1.6
+      name: juniper.led.origin
+      syntax: EnumInteger
+    jnxLEDDescr:
+      oid: .1.3.6.1.4.1.2636.3.1.10.1.7
+      name: juniper.led.descr
+      syntax: DisplayString
+    jnxLEDState:
+      oid: .1.3.6.1.4.1.2636.3.1.10.1.8
+      name: juniper.led.state
+      syntax: EnumInteger
+    # jnxLEDStateOrdered:
+    #   oid: .1.3.6.1.4.1.2636.3.1.10.1.9
+    #   name: juniper.led.state
+    #   syntax: EnumInteger
+
+JUNIPER-MIB::jnxFilledEntry:
+  mib: JUNIPER-MIB
+  object: jnxFilledEntry
+  index:
+    - type: Integer32
+      oid: .1.3.6.1.4.1.2636.3.1.12.1.1
+      name: juniper.container.index
+      syntax: IntegerAsID
+    - type: Integer32
+      oid: .1.3.6.1.4.1.2636.3.1.12.1.2
+      name: juniper.container.l1.index
+      syntax: IntegerAsID
+    - type: Integer32
+      oid: .1.3.6.1.4.1.2636.3.1.12.1.3
+      name: juniper.container.l2.index
+      syntax: IntegerAsID
+    - type: Integer32
+      oid: .1.3.6.1.4.1.2636.3.1.12.1.4
+      name: juniper.container.l3.index
+      syntax: IntegerAsID
+  discovery_attribute: jnxFilledDescr
+  attributes:
+    jnxFilledDescr:
+      oid: .1.3.6.1.4.1.2636.3.1.12.1.5
+      name: juniper.filled.descr
+      syntax: DisplayString
+    jnxFilledState:
+      oid: .1.3.6.1.4.1.2636.3.1.12.1.6
+      name: juniper.filled.state
+      syntax: EnumInteger
+    jnxFilledChassisId:
+      oid: .1.3.6.1.4.1.2636.3.1.12.1.7
+      tag: true
+      name: juniper.chassis
+      syntax: EnumInteger
+    jnxFilledChassisDescr:
+      oid: .1.3.6.1.4.1.2636.3.1.12.1.8
+      tag: true
+      name: juniper.chassis.descr
+      syntax: DisplayString
+
+JUNIPER-MIB::jnxOperatingEntry:
+  mib: JUNIPER-MIB
+  object: jnxOperatingEntry
+  # index:
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.13.1.1
+  #     name: juniper.container.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.13.1.2
+  #     name: juniper.container.l1.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.13.1.3
+  #     name: juniper.container.l2.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.13.1.4
+  #     name: juniper.container.l3.index
+  #     syntax: IntegerAsID
+  augments: JUNIPER-MIB::jnxFilledEntry
+  discovery_attribute: jnxOperatingDescr
+  attributes:
+    jnxOperatingDescr:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.5
+      tag: true
+      name: juniper.oper.descr
+      syntax: DisplayString
+    jnxOperatingState:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.6
+      name: juniper.oper.state
+      syntax: EnumInteger
+    jnxOperatingTemp:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.7
+      name: temp.degrees
+      syntax: TemperatureC # Gauge32
+    jnxOperatingCPU:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.8
+      name: cpu.util.pct
+      syntax: Percent100 # Gauge32
+    jnxOperatingISR:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.9
+      name: cpu.interrupt.pct
+      syntax: Percent100 # Gauge32
+    jnxOperatingDRAMSize:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.10
+      name: mem.total.bytes
+      syntax: BytesB # Integer32
+    jnxOperatingBuffer:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.11
+      name: mem.buffer_pool.util.pct
+      syntax: Percent100 # Gauge32
+    jnxOperatingHeap:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.12
+      name: mem.heap.util.pct
+      syntax: Percent100 # Gauge32
+    jnxOperatingUpTime:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.13
+      name: juniper.oper.uptime
+      syntax: TicksCentiSec # Integer
+    jnxOperatingLastRestart:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.14
+      name: juniper.oper.restart_sysuptime
+      syntax: TimeTicks
+    jnxOperatingMemory:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.15
+      name: mem.total.bytes
+      syntax: BytesMB # Integer32
+      overrides:
+        object: JUNIPER-MIB::jnxOperatingEntry
+        attribute: jnxOperatingDRAMSize
+    # jnxOperatingStateOrdered:
+    #   oid: .1.3.6.1.4.1.2636.3.1.13.1.16
+    #   name: juniper.oper.state
+    #   syntax: EnumInteger
+    #   overrides:
+    #     object: JUNIPER-MIB::jnxOperatingEntry
+    #     attribute: jnxOperatingState
+    # jnxOperatingChassisId:
+    #   oid: .1.3.6.1.4.1.2636.3.1.13.1.17
+    #   tag: true
+    #   name: juniper.chassis
+    #   syntax: EnumInteger
+    # jnxOperatingChassisDescr:
+    #   oid: .1.3.6.1.4.1.2636.3.1.13.1.18
+    #   tag: true
+    #   name: juniper.chassis.descr
+    #   syntax: DisplayString
+    jnxOperatingRestartTime:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.19
+      name: juniper.oper.restart_time
+      syntax: DateAndTime
+    jnxOperating1MinLoadAvg:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.20
+      name: cpu.load.1min_avg.pct
+      syntax: Percent100 # Gauge32
+    jnxOperating5MinLoadAvg:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.21
+      name: cpu.load.5min_avg.pct
+      syntax: Percent100 # Gauge32
+    jnxOperating15MinLoadAvg:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.22
+      name: cpu.load.15min_avg.pct
+      syntax: Percent100 # Gauge32
+    jnxOperating1MinAvgCPU:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.23
+      name: cpu.util.1min_avg.pct
+      syntax: Percent100 # Gauge32
+    jnxOperating5MinAvgCPU:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.24
+      name: cpu.util.5min_avg.pct
+      syntax: Percent100 # Gauge32
+    jnxOperating15MinAvgCPU:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.25
+      name: cpu.util.15min_avg.pct
+      syntax: Percent100 # Gauge32
+    jnxOperatingFRUPower:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.26
+      name: juniper.fru.voltage.volts
+      syntax: VoltageVolt # Gauge32
+    jnxOperatingBufferCP:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.27
+      name: juniper.cntrl_plane.mem.buffer_pool.util.pct
+      syntax: Percent100 # Gauge32
+    jnxOperatingMemoryCP:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.28
+      name: juniper.cntrl_plane.mem.total.bytes
+      syntax: BytesMB # Gauge32
+    jnxOperatingBufferExt:
+      oid: .1.3.6.1.4.1.2636.3.1.13.1.29
+      name: mem.buffer_pool.used.pct
+      syntax: Percent100 # Gauge32
+
+JUNIPER-MIB::jnxRedundancyEntry:
+  mib: JUNIPER-MIB
+  object: jnxRedundancyEntry
+  # index:
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.14.1.1
+  #     name: juniper.container.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.14.1.2
+  #     name: juniper.container.l1.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.14.1.3
+  #     name: juniper.container.l2.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.14.1.4
+  #     name: juniper.container.l3.index
+  #     syntax: IntegerAsID
+  augments: JUNIPER-MIB::jnxFilledEntry
+  discovery_attribute: jnxRedundancyDescr
+  attributes:
+    jnxRedundancyDescr:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.5
+      name: juniper.redundancy.descr
+      syntax: DisplayString
+    jnxRedundancyConfig:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.6
+      name: juniper.redundancy.config
+      syntax: EnumInteger
+    jnxRedundancyState:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.7
+      name: juniper.redundancy.state
+      syntax: EnumInteger
+    jnxRedundancySwitchoverCount:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.8
+      name: juniper.redundancy.switchover.count
+      syntax: Counter32
+    jnxRedundancySwitchoverTime:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.9
+      name: juniper.redundancy.switchover.sysuptime
+      syntax: TimeStamp
+    jnxRedundancySwitchoverReason:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.10
+      name: juniper.redundancy.switchover.reason
+      syntax: EnumInteger
+    jnxRedundancyKeepaliveHeartbeat:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.11
+      name: juniper.redundancy.keepalive.heartbeat.interval
+      syntax: TicksSec
+    jnxRedundancyKeepaliveTimeout:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.12
+      name: juniper.redundancy.keepalive.timeout.duration
+      syntax: TicksSec
+    jnxRedundancyKeepaliveElapsed:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.13
+      name: juniper.redundancy.keepalive.elapsed.duration
+      syntax: TicksSec
+    jnxRedundancyKeepaliveLoss:
+      oid: .1.3.6.1.4.1.2636.3.1.14.1.14
+      name: juniper.redundancy.keepalive.losses
+      syntax: Counter32
+    # jnxRedundancyChassisId:
+    #   oid: .1.3.6.1.4.1.2636.3.1.14.1.15
+    #   tag: true
+    #   name: juniper.chassis
+    #   syntax: EnumInteger
+    # jnxRedundancyChassisDescr:
+    #   oid: .1.3.6.1.4.1.2636.3.1.14.1.16
+    #   tag: true
+    #   name: juniper.chassis.descr
+    #   syntax: DisplayString
+
+JUNIPER-MIB::jnxFruEntry:
+  mib: JUNIPER-MIB
+  object: jnxFruEntry
+  # index:
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.15.1.1
+  #     name: juniper.container.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.15.1.2
+  #     name: juniper.container.l1.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.15.1.3
+  #     name: juniper.container.l2.index
+  #     syntax: IntegerAsID
+  #   - type: Integer32
+  #     oid: .1.3.6.1.4.1.2636.3.1.15.1.4
+  #     name: juniper.container.l3.index
+  #     syntax: IntegerAsID
+  augments: JUNIPER-MIB::jnxFilledEntry
+  discovery_attribute: jnxFruName
+  attributes:
+    jnxFruName:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.5
+      name: juniper.fru.descr
+      syntax: DisplayString
+    jnxFruType:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.6
+      name: juniper.fru.type
+      syntax: EnumInteger
+    jnxFruSlot:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.7
+      name: juniper.fru.slot
+      syntax: IntegerAsID
+    jnxFruState:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.8
+      name: juniper.fru.state
+      syntax: EnumInteger
+    jnxFruTemp:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.9
+      name: juniper.fru.temp.degrees
+      syntax: TemperatureC
+    jnxFruOfflineReason:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.10
+      name: juniper.fru.offline_reason
+      syntax: EnumInteger
+    jnxFruLastPowerOff:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.11
+      name: juniper.fru.last_power_off
+      syntax: TimeTicks
+    jnxFruLastPowerOn:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.12
+      name: juniper.fru.last_power_on
+      syntax: TimeTicks
+    jnxFruPowerUpTime:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.13
+      name: juniper.fru.power_up.duration
+      syntax: TicksCentiSec
+    # jnxFruChassisId:
+    #   oid: .1.3.6.1.4.1.2636.3.1.15.1.14
+    #   tag: true
+    #   name: juniper.chassis
+    #   syntax: EnumInteger
+    # jnxFruChassisDescr:
+    #   oid: .1.3.6.1.4.1.2636.3.1.15.1.15
+    #   tag: true
+    #   name: juniper.chassis.descr
+    #   syntax: DisplayString
+    jnxFruPsdAssignment:
+      oid: .1.3.6.1.4.1.2636.3.1.15.1.16
+      name: juniper.fru.psd.assignment
+      syntax: IntegerAsID
